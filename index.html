@@ -1,427 +1,339 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Amitava Sir English Learning Hub</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
-header{background:linear-gradient(135deg,#123b68,#2870df);color:white;padding:25px 6%}
-.brand{font-size:24px;font-weight:bold}.sub{margin-top:5px;font-size:13px}
-.wrap{max-width:1050px;margin:25px auto;padding:0 16px}
-.card{background:white;border:1px solid #e2e7ee;border-radius:16px;padding:20px;margin:15px 0}
-.login{max-width:420px;margin:50px auto}
-input,select,textarea{width:100%;padding:12px;margin:6px 0 14px;border:1px solid #ccd6e3;border-radius:9px;font:inherit}
-button{padding:10px 14px;border:0;border-radius:9px;background:#2870df;color:white;font-weight:bold}
-.gray{background:white;color:#123b68;border:1px solid #d5deea}
-.red{background:#c43d3d}
-.nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
-.nav button{background:white;color:#123b68;border:1px solid #d5deea}
-.nav .active{background:#123b68;color:white}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.stat{font-size:30px;font-weight:bold}.muted{color:#687386}
-.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #edf0f4}
-.pill{background:#e7f6ee;color:#17744d;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:bold}
-.empty{text-align:center;padding:25px;color:#687386}
-table{width:100%;border-collapse:collapse;margin-top:15px}
-th,td{text-align:left;padding:10px 7px;border-bottom:1px solid #edf0f4}
-.modal{position:fixed;inset:0;background:#071a2d99;display:flex;align-items:center;justify-content:center;padding:16px}
-.modalbox{background:white;border-radius:16px;padding:20px;width:100%;max-width:500px;max-height:90vh;overflow:auto}
-.checks{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
-.check{border:1px solid #d5deea;border-radius:9px;padding:8px}
-.check input{width:auto;margin:0 4px 0 0}
-@media(max-width:700px){.grid{grid-template-columns:1fr}.row{align-items:flex-start;flex-direction:column}table{display:block;overflow-x:auto;white-space:nowrap}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}header{background:#123b68;color:#fff;padding:22px 6%}.brand{font-size:23px;font-weight:700}.sub{font-size:13px;margin-top:5px;opacity:.85}.wrap{max-width:1100px;margin:25px auto;padding:0 16px}.card{background:#fff;border:1px solid #e1e7ef;border-radius:16px;padding:20px;margin:15px 0}.login{max-width:420px;margin:45px auto}input,select,textarea{width:100%;padding:12px;margin:6px 0 13px;border:1px solid #ccd6e3;border-radius:9px;font:inherit}button{padding:10px 14px;border:0;border-radius:9px;background:#2870df;color:white;font-weight:bold;cursor:pointer}button.gray{background:white;color:#123b68;border:1px solid #d5deea}button.red{background:#c43d3d}.nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.nav button{background:white;color:#123b68;border:1px solid #d5deea}.nav button.active{background:#123b68;color:white}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat{font-size:29px;font-weight:bold}.muted{color:#687386}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #edf0f4}.pill{background:#e7f6ee;color:#17744d;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:bold}.empty{text-align:center;padding:25px;color:#687386}.modal{position:fixed;inset:0;background:#071a2d99;display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}.modalbox{background:white;border-radius:16px;padding:20px;width:100%;max-width:560px;max-height:90vh;overflow:auto}.checks{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}.check{border:1px solid #d5deea;border-radius:9px;padding:8px}.check input{width:auto;margin:0 4px 0 0}table{width:100%;border-collapse:collapse;margin-top:15px}th,td{text-align:left;padding:10px 7px;border-bottom:1px solid #edf0f4}.notice{background:#f0f6ff;border:1px solid #d8e7fb;padding:11px;border-radius:10px;font-size:13px;margin:10px 0}.danger{background:#fff2f2;border:1px solid #f0caca;padding:11px;border-radius:10px;font-size:13px;margin:10px 0}.small{font-size:12px}@media(max-width:700px){.grid{grid-template-columns:1fr}.row{align-items:flex-start;flex-direction:column}table{display:block;overflow-x:auto;white-space:nowrap}}
 </style>
 </head>
 <body>
-
-<header>
-<div class="brand">MUKHERJEE ENGLISH TUTORIAL</div>
-<div class="sub">KONNAGAR, HOOGHLY • Amitava Sir</div>
-</header>
-
+<header><div class="brand">MUKHERJEE ENGLISH TUTORIAL</div><div class="sub">KONNAGAR, HOOGHLY • Amitava Sir</div></header>
 <div id="app" class="wrap"></div>
-
 <script>
-var KEY="amitavaHubV3";
+var DBKEY="amitava_simple_v3";
+var ADMINKEY="amitava_admin_password_v4";
+var data={students:[],content:[]};
+var current=null,page="home";
+var classes=["VI","VII","VIII","IX","X","XI","XII"];
 
-var db={
-students:[
-{id:"STU1001",name:"Rahul",className:"VIII",password:"1234",active:true},
-{id:"STU1002",name:"Ananya",className:"X",password:"1234",active:true}
-],
-content:[
-{id:1,title:"Preposition Notes",type:"Notes",classes:["VIII"],url:"",open:true},
-{id:2,title:"Preposition Video",type:"Video",classes:["VIII"],url:"",open:true},
-{id:3,title:"The Ball Poem Notes",type:"Notes",classes:["X"],url:"",open:true}
-]
-};
-
-var current=null;
-var page="home";
-
-function save(){
-try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}
-}
+function save(){try{localStorage.setItem(DBKEY,JSON.stringify(data));}catch(e){}}
 
 function load(){
-try{
-var x=localStorage.getItem(KEY);
-if(x)db=JSON.parse(x);
-}catch(e){}
+ try{var x=localStorage.getItem(DBKEY);if(x){data=JSON.parse(x);}}catch(e){}
+ if(!Array.isArray(data.students))data.students=[];
+ if(!Array.isArray(data.content))data.content=[];
+ data.content=data.content.filter(function(x){return !(x.title==="Preposition Video"&&!x.url);});
+ for(var i=0;i<data.students.length;i++)data.students[i].active=data.students[i].active!==false;
+ save();
 }
 
-function e(s){
-return String(s||"").replace(/[&<>"']/g,function(m){
-return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]
-});
+function adminPassword(){return localStorage.getItem(ADMINKEY)||"admin123";}
+function app(){return document.getElementById("app");}
+
+function esc(v){
+ return String(v==null?"":v)
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/\"/g,"&quot;")
+ .replace(/'/g,"&#39;");
 }
 
-function loginScreen(){
-document.getElementById("app").innerHTML=
-'<div class="card login">'+
-'<h1>Welcome 👋</h1>'+
-'<p class="muted">Amitava Sir English Learning Hub</p>'+
-'<label>Login as</label>'+
-'<select id="role"><option value="student">Student</option><option value="admin">Admin</option></select>'+
-'<label>ID / Username</label>'+
-'<input id="uid" placeholder="Student ID or admin">'+
-'<label>Password</label>'+
-'<input id="pw" type="password" placeholder="Password">'+
-'<button onclick="login()">Login</button>'+
-'<p class="muted" style="font-size:12px;margin-top:18px">Student: STU1001 / 1234<br>Admin: admin / admin123</p>'+
-'</div>';
+function loginScreen(adminMode){
+ if(adminMode){
+  app().innerHTML='<div class="card login"><h1>Admin Login</h1><p class="muted">Private teacher access</p><label>Username</label><input id="loginId" value="admin" placeholder="admin"><label>Password</label><input id="loginPassword" type="password" placeholder="Admin password"><button onclick="doAdminLogin()">Admin Login</button> <button class="gray" onclick="location.hash=\"\";loginScreen(false)">Student Login</button><p class="muted small" style="margin-top:16px">Admin access is opened from the private admin link. Students using the normal website link do not see this screen.</p></div>';
+ }else{
+  app().innerHTML='<div class="card login"><h1>Welcome 👋</h1><p class="muted">Amitava Sir English Learning Hub</p><h3>Student Login</h3><label>Student ID</label><input id="loginId" placeholder="Your Student ID"><label>Password</label><input id="loginPassword" type="password" placeholder="Your password"><button onclick="doStudentLogin()">Login</button><p class="muted small" style="margin-top:18px">Use the Student ID and password given by your teacher.</p></div>';
+ }
 }
 
-function login(){
-var r=document.getElementById("role").value;
-var id=document.getElementById("uid").value.trim();
-var pass=document.getElementById("pw").value;
-
-if(r==="admin"&&id==="admin"&&pass==="admin123"){
-current={role:"admin",name:"Amitava Sir"};
-page="home";
-render();
-return;
+function doAdminLogin(){
+ var id=document.getElementById("loginId").value.trim();
+ var pass=document.getElementById("loginPassword").value;
+ if(id.toLowerCase()==="admin"&&pass===adminPassword()){
+  current={role:"admin",name:"Amitava Sir"};
+  page="home";
+  render();
+ }else alert("Invalid admin login.");
 }
 
-if(r==="student"){
-for(var i=0;i<db.students.length;i++){
-var s=db.students[i];
-if(s.id.toLowerCase()===id.toLowerCase()&&s.password===pass&&s.active){
-current={role:"student",name:s.name,id:s.id,className:s.className};
-page="home";
-render();
-return;
-}
-}
+function doStudentLogin(){
+ var id=document.getElementById("loginId").value.trim(),pass=document.getElementById("loginPassword").value;
+ for(var i=0;i<data.students.length;i++){
+  var s=data.students[i];
+  if(s.id.toLowerCase()===id.toLowerCase()&&s.password===pass&&s.active){
+   current={role:"student",name:s.name,id:s.id,className:s.className};
+   page="home";
+   render();
+   return;
+  }
+ }
+ alert("Invalid login or this student account is inactive.");
 }
 
-alert("Invalid login or blocked student.");
+function menu(items){
+ var h='<div class="nav">';
+ for(var i=0;i<items.length;i++)
+  h+='<button class="'+(page===items[i][0]?"active":"")+'" onclick="page=\''+items[i][0]+'\';render()">'+items[i][1]+'</button>';
+ h+='<button class="gray" onclick="logout()">Logout</button></div>';
+ return h;
 }
 
-function menu(a){
-var h='<div class="nav">';
-for(var i=0;i<a.length;i++){
-h+='<button class="'+(page===a[i][0]?"active":"")+'" onclick="page=\''+a[i][0]+'\';render()">'+a[i][1]+'</button>';
-}
-h+='<button class="gray" onclick="current=null;loginScreen()">Logout</button></div>';
-return h;
-}
+function logout(){current=null;location.hash="";loginScreen(false);}
 
 function render(){
-if(!current){loginScreen();return}
-if(current.role==="admin")adminPage();
-else studentPage();
+ if(!current){loginScreen(location.hash.toLowerCase()==="#admin");return;}
+ if(current.role==="admin")adminPage();
+ else studentPage();
 }
 
 function studentPage(){
-var visible=[];
-for(var i=0;i<db.content.length;i++){
-var x=db.content[i];
-if(x.open&&x.classes.indexOf(current.className)>=0)visible.push(x);
+ var visible=[];
+ for(var i=0;i<data.content.length;i++){
+  var x=data.content[i];
+  if(x.open&&x.classes.indexOf(current.className)>=0)visible.push(x);
+ }
+ var body="";
+ if(page==="home"){
+  body='<div class="grid"><div class="card"><div class="muted">Notes</div><div class="stat">'+countType(visible,"Notes")+'</div></div><div class="card"><div class="muted">Videos</div><div class="stat">'+countType(visible,"Video")+'</div></div><div class="card"><div class="muted">Tests</div><div class="stat">'+countType(visible,"Test")+'</div></div></div><div class="card"><h2>Open for Class '+esc(current.className)+'</h2>'+itemsHtml(visible)+'</div>';
+ }else{
+  var type=page==="notes"?"Notes":page==="videos"?"Video":"Test",arr=[];
+  for(var j=0;j<visible.length;j++)if(visible[j].type===type)arr.push(visible[j]);
+  body='<div class="card"><h2>'+type+'</h2>'+itemsHtml(arr)+'</div>';
+ }
+ app().innerHTML='<h1>Welcome, '+esc(current.name)+' 👋</h1><p class="muted">Class '+esc(current.className)+'</p>'+menu([["home","🏠 Home"],["notes","📚 Notes"],["videos","🎥 Videos"],["tests","📝 Tests"]])+body;
 }
 
-var body="";
-
-if(page==="home"){
-body='<div class="grid">'+
-'<div class="card"><div class="muted">Notes</div><div class="stat">'+count(visible,"Notes")+'</div></div>'+
-'<div class="card"><div class="muted">Videos</div><div class="stat">'+count(visible,"Video")+'</div></div>'+
-'<div class="card"><div class="muted">Tests</div><div class="stat">'+count(visible,"Test")+'</div></div>'+
-'</div><div class="card"><h2>Open for Class '+e(current.className)+'</h2>'+items(visible)+'</div>';
-}else{
-var type=page==="notes"?"Notes":page==="videos"?"Video":"Test";
-var arr=[];
-for(var j=0;j<visible.length;j++)if(visible[j].type===type)arr.push(visible[j]);
-body='<div class="card"><h2>'+type+'</h2>'+items(arr)+'</div>';
+function countType(arr,type){
+ var n=0;
+ for(var i=0;i<arr.length;i++)if(arr[i].type===type)n++;
+ return n;
 }
 
-document.getElementById("app").innerHTML=
-'<h1>Welcome, '+e(current.name)+' 👋</h1>'+
-'<p class="muted">Class '+e(current.className)+'</p>'+
-menu([["home","🏠 Home"],["notes","📚 Notes"],["videos","🎥 Videos"],["tests","📝 Tests"]])+
-body;
+function itemsHtml(arr){
+ if(!arr.length)return '<div class="empty">Nothing is open for your class yet.</div>';
+ var h="";
+ for(var i=0;i<arr.length;i++){
+  var x=arr[i];
+  h+='<div class="row"><div><b>'+esc(x.title)+'</b><div class="muted">'+esc(x.type)+(x.desc?' • '+esc(x.desc):'')+'</div></div><span class="pill">'+esc(x.type)+'</span><button onclick="openResource('+x.id+')">'+(x.type==="Video"?"▶ Watch":x.type==="Notes"?"📖 Open":"📝 Test")+'</button></div>';
+ }
+ return h;
 }
 
-function count(a,type){
-var n=0;
-for(var i=0;i<a.length;i++)if(a[i].type===type)n++;
-return n;
-}
-
-function items(a){
-if(!a.length)return'<div class="empty">Nothing is open for your class yet.</div>';
-var h="";
-for(var i=0;i<a.length;i++){
-var x=a[i];
-h+='<div class="row">'+
-'<div><b>'+e(x.title)+'</b><div class="muted">'+e(x.type)+'</div></div>'+
-'<span class="pill">'+e(x.type)+'</span>'+
-'<button onclick="openItem('+x.id+')">'+(x.type==="Video"?"▶ Watch":x.type==="Notes"?"📖 Open":"📝 Test")+'</button>'+
-'</div>';
-}
-return h;
-}
-
-function openItem(id){
-var x=find(id);
-if(!x)return;
-
-if(x.type==="Test"){
-alert("Test section will be added next.");
-return;
-}
-
-if(!x.url){
-alert("Your teacher has not added the link yet.");
-return;
-}
-
-window.open(x.url,"_blank");
+function openResource(id){
+ var x=findContent(id);
+ if(!x)return;
+ if(x.type==="Test"){
+  alert("Test section can be expanded later. The resource link is saved and ready.");
+  return;
+ }
+ if(!x.url){
+  alert("The teacher has not added a link yet.");
+  return;
+ }
+ window.open(x.url,"_blank");
 }
 
 function adminPage(){
-var body="";
-
-if(page==="home"){
-body='<div class="grid">'+
-'<div class="card"><div class="muted">Students</div><div class="stat">'+db.students.length+'</div></div>'+
-'<div class="card"><div class="muted">Content</div><div class="stat">'+db.content.length+'</div></div>'+
-'<div class="card"><div class="muted">Published</div><div class="stat">'+published()+'</div></div>'+
-'</div>'+
-'<div class="card"><h2>⚡ Quick Control</h2>'+
-'<p class="muted">Add Notes/PDF or YouTube links, select the classes, then Publish.</p>'+
-'<button onclick="contentForm()">+ Add Content</button></div>';
+ var body="";
+ if(page==="home"){
+  body='<div class="grid"><div class="card"><div class="muted">Students</div><div class="stat">'+data.students.length+'</div></div><div class="card"><div class="muted">Content</div><div class="stat">'+data.content.length+'</div></div><div class="card"><div class="muted">Published</div><div class="stat">'+publishedCount()+'</div></div></div><div class="card"><h2>Quick Control</h2><p class="muted">Add a Notes/PDF link or YouTube link, select the class, then Publish it.</p><button onclick="contentForm()">+ Add Content</button> <button class="gray" onclick="previewClass()">👁 Preview as Student</button></div>';
+ }else if(page==="content")body=contentAdmin();
+ else if(page==="students")body=studentsAdmin();
+ else body=settingsPage();
+ app().innerHTML='<h1>Admin Panel</h1><p class="muted">Amitava Sir • Complete control</p>'+menu([["home","📊 Dashboard"],["content","📚 Content"],["students","👨‍🎓 Students"],["settings","⚙️ Settings"]])+body;
 }
 
-else if(page==="content")body=contentAdmin();
-else body=studentsAdmin();
-
-document.getElementById("app").innerHTML=
-'<h1>Admin Panel</h1>'+
-'<p class="muted">Amitava Sir • Complete control</p>'+
-menu([["home","📊 Dashboard"],["content","📚 Content"],["students","👨‍🎓 Students"]])+
-body;
-}
-
-function published(){
-var n=0;
-for(var i=0;i<db.content.length;i++)if(db.content[i].open)n++;
-return n;
+function publishedCount(){
+ var n=0;
+ for(var i=0;i<data.content.length;i++)if(data.content[i].open)n++;
+ return n;
 }
 
 function contentAdmin(){
-var h='<div class="card"><h2>📚 Content Library</h2>'+
-'<p class="muted">Students see only content you publish for their class.</p>'+
-'<button onclick="contentForm()">+ Add Content</button>';
-
-if(!db.content.length)return h+'<div class="empty">No content yet.</div></div>';
-
-h+='<table><tr><th>Title</th><th>Class</th><th>Type</th><th>Access</th><th>Actions</th></tr>';
-
-for(var i=0;i<db.content.length;i++){
-var x=db.content[i];
-h+='<tr><td><b>'+e(x.title)+'</b></td>'+
-'<td>'+x.classes.join(", ")+'</td>'+
-'<td>'+e(x.type)+'</td>'+
-'<td>'+(x.open?"🟢 OPEN":"🔒 HIDDEN")+'</td>'+
-'<td><button onclick="toggle('+x.id+')">'+(x.open?"Hide":"Publish")+'</button> '+
-'<button class="gray" onclick="contentForm('+x.id+')">Edit</button> '+
-'<button class="red" onclick="remove('+x.id+')">Delete</button></td></tr>';
+ var h='<div class="card"><h2>📚 Content Library</h2><p class="muted">Students see only content that is Published and assigned to their class.</p><button onclick="contentForm()">+ Add Content</button> <button class="gray" onclick="previewClass()">👁 Preview as Student</button>';
+ if(!data.content.length)return h+'<div class="empty">No content yet.</div></div>';
+ h+='<table><tr><th>Title</th><th>Class</th><th>Type</th><th>Access</th><th>Actions</th></tr>';
+ for(var i=0;i<data.content.length;i++){
+  var x=data.content[i];
+  h+='<tr><td><b>'+esc(x.title)+'</b></td><td>'+x.classes.join(", ")+'</td><td>'+esc(x.type)+'</td><td>'+(x.open?"🟢 OPEN":"🔒 HIDDEN")+'</td><td><button onclick="toggleContent('+x.id+')">'+(x.open?"Hide":"Publish")+'</button> <button class="gray" onclick="contentForm('+x.id+')">Edit</button> <button class="gray" onclick="previewOne('+x.id+')">Preview</button> <button class="red" onclick="removeContent('+x.id+')">Delete</button></td></tr>';
+ }
+ return h+'</table></div>';
 }
 
-return h+'</table></div>';
+function contentForm(editId){
+ var x=editId?findContent(editId):null;
+ var h='<div class="modal" id="modal"><div class="modalbox"><h2>'+(x?"Edit Content":"Add Content")+'</h2><label>Title</label><input id="fTitle" value="'+esc(x?x.title:"")+'" placeholder="e.g. Tense Part 1"><label>Type</label><select id="fType"><option '+(x&&x.type==="Notes"?"selected":"")+'>Notes</option><option '+(x&&x.type==="Video"?"selected":"")+'>Video</option><option '+(x&&x.type==="Test"?"selected":"")+'>Test</option></select><label>Classes</label><div class="checks">';
+ for(var i=0;i<classes.length;i++){
+  var checked=x&&x.classes.indexOf(classes[i])>=0?"checked":"";
+  h+='<label class="check"><input type="checkbox" class="classBox" value="'+classes[i]+'" '+checked+'> '+classes[i]+'</label>';
+ }
+ h+='</div><label>Link</label><input id="fUrl" value="'+esc(x?x.url:"")+'" placeholder="YouTube / PDF / Google Drive link"><label>Description</label><textarea id="fDesc" rows="3" placeholder="Short description">'+esc(x?(x.desc||""):"")+'</textarea><div class="notice">For PDFs/notes, paste the shareable Google Drive PDF link. For videos, paste the YouTube link. Use Viewer permission for shared PDFs.</div><button onclick="saveContentForm('+(editId||0)+')">Save</button> <button class="gray" onclick="closeModal()">Cancel</button></div></div>';
+ document.body.insertAdjacentHTML("beforeend",h);
 }
 
-function contentForm(id){
-var x=id?find(id):null;
-var cls=["VI","VII","VIII","IX","X","XI","XII"];
-
-var h='<div class="modal" id="modal"><div class="modalbox">'+
-'<h2>'+(x?"Edit Content":"Add Content")+'</h2>'+
-'<label>Title</label>'+
-'<input id="title" value="'+e(x?x.title:"")+'" placeholder="e.g. Tense Part 1">'+
-'<label>Type</label>'+
-'<select id="type">'+
-'<option '+(x&&x.type==="Notes"?"selected":"")+'>Notes</option>'+
-'<option '+(x&&x.type==="Video"?"selected":"")+'>Video</option>'+
-'<option '+(x&&x.type==="Test"?"selected":"")+'>Test</option>'+
-'</select>'+
-'<label>Classes</label><div class="checks">';
-
-for(var i=0;i<cls.length;i++){
-h+='<label class="check"><input type="checkbox" class="cb" value="'+cls[i]+'" '+(x&&x.classes.indexOf(cls[i])>=0?"checked":"")+'>'+cls[i]+'</label>';
+function saveContentForm(id){
+ var title=document.getElementById("fTitle").value.trim();
+ var type=document.getElementById("fType").value;
+ var url=document.getElementById("fUrl").value.trim();
+ var desc=document.getElementById("fDesc").value.trim();
+ var boxes=document.getElementsByClassName("classBox"),selected=[];
+ for(var i=0;i<boxes.length;i++)if(boxes[i].checked)selected.push(boxes[i].value);
+ if(!title||!selected.length){alert("Title and at least one class are required.");return;}
+ if(id){
+  var x=findContent(id);
+  x.title=title;x.type=type;x.url=url;x.desc=desc;x.classes=selected;
+ }else{
+  data.content.push({id:Date.now(),title:title,type:type,url:url,desc:desc,classes:selected,open:false});
+ }
+ save();closeModal();render();
 }
 
-h+='</div><label>Link</label>'+
-'<input id="url" value="'+e(x?x.url:"")+'" placeholder="YouTube / PDF / Google Drive link">'+
-'<label>Description</label>'+
-'<textarea id="desc" rows="3" placeholder="Short description">'+e(x?x.desc||"":"")+'</textarea>'+
-'<p class="muted" style="font-size:12px">For Video paste YouTube link. For Notes paste PDF/Drive link.</p>'+
-'<button onclick="saveContent('+(id||0)+')">Save</button> '+
-'<button class="gray" onclick="closeModal()">Cancel</button>'+
-'</div></div>';
-
-document.body.insertAdjacentHTML("beforeend",h);
+function findContent(id){
+ for(var i=0;i<data.content.length;i++)if(data.content[i].id===id)return data.content[i];
+ return null;
 }
 
-function saveContent(id){
-var title=document.getElementById("title").value.trim();
-var type=document.getElementById("type").value;
-var url=document.getElementById("url").value.trim();
-var desc=document.getElementById("desc").value.trim();
-var boxes=document.getElementsByClassName("cb");
-var classes=[];
-
-for(var i=0;i<boxes.length;i++)if(boxes[i].checked)classes.push(boxes[i].value);
-
-if(!title||!classes.length){
-alert("Title and at least one class are required.");
-return;
+function toggleContent(id){
+ var x=findContent(id);
+ if(x)x.open=!x.open;
+ save();render();
 }
 
-if(id){
-var x=find(id);
-x.title=title;
-x.type=type;
-x.url=url;
-x.desc=desc;
-x.classes=classes;
-}else{
-db.content.push({
-id:new Date().getTime(),
-title:title,
-type:type,
-url:url,
-desc:desc,
-classes:classes,
-open:false
-});
-}
-
-save();
-closeModal();
-render();
-}
-
-function find(id){
-for(var i=0;i<db.content.length;i++)if(db.content[i].id===id)return db.content[i];
-return null;
-}
-
-function toggle(id){
-var x=find(id);
-if(x)x.open=!x.open;
-save();
-render();
-}
-
-function remove(id){
-if(confirm("Delete this content?")){
-var a=[];
-for(var i=0;i<db.content.length;i++)if(db.content[i].id!==id)a.push(db.content[i]);
-db.content=a;
-save();
-render();
-}
+function removeContent(id){
+ if(confirm("Delete this content?")){
+  data.content=data.content.filter(function(x){return x.id!==id;});
+  save();render();
+ }
 }
 
 function studentsAdmin(){
-var h='<div class="card"><h2>👨‍🎓 Students</h2>'+
-'<p class="muted">Create and control student accounts.</p>'+
-'<button onclick="studentForm()">+ Add Student</button>'+
-'<table><tr><th>Name</th><th>ID</th><th>Class</th><th>Status</th><th>Action</th></tr>';
-
-for(var i=0;i<db.students.length;i++){
-var s=db.students[i];
-h+='<tr><td>'+e(s.name)+'</td>'+
-'<td>'+e(s.id)+'</td>'+
-'<td>'+e(s.className)+'</td>'+
-'<td>'+(s.active?"🟢 Active":"🔒 Blocked")+'</td>'+
-'<td><button onclick="studentToggle(\''+e(s.id)+'\')">'+(s.active?"Block":"Activate")+'</button></td></tr>';
+ var h='<div class="card"><h2>👨‍🎓 Students</h2><p class="muted">Every student has a separate ID and password. Block or reset accounts when needed.</p><button onclick="studentForm()">+ Add Student</button><table><tr><th>Name</th><th>ID</th><th>Class</th><th>Status</th><th>Action</th></tr>';
+ for(var i=0;i<data.students.length;i++){
+  var s=data.students[i];
+  h+='<tr><td>'+esc(s.name)+'</td><td>'+esc(s.id)+'</td><td>'+esc(s.className)+'</td><td>'+(s.active?"🟢 Active":"🔒 Inactive")+'</td><td><button onclick="toggleStudent(\''+esc(s.id)+'\')">'+(s.active?"Block":"Activate")+'</button> <button class="gray" onclick="editStudent(\''+esc(s.id)+'\')">Edit</button> <button class="gray" onclick="resetStudentPassword(\''+esc(s.id)+'\')">Reset Password</button> <button class="red" onclick="removeStudent(\''+esc(s.id)+'\')">Delete</button></td></tr>';
+ }
+ return h+'</table></div>';
 }
 
-return h+'</table></div>';
+function nextStudentId(){
+ var n=1001;
+ while(true){
+  var id="STU"+n,used=false;
+  for(var i=0;i<data.students.length;i++)if(data.students[i].id===id){used=true;break;}
+  if(!used)return id;
+  n++;
+ }
 }
 
-function studentForm(){
-document.body.insertAdjacentHTML("beforeend",
-'<div class="modal" id="modal"><div class="modalbox">'+
-'<h2>Add Student</h2>'+
-'<label>Name</label><input id="sname" placeholder="Student name">'+
-'<label>Student ID</label><input id="sid" placeholder="STU1003">'+
-'<label>Class</label>'+
-'<select id="sclass"><option>VI</option><option>VII</option><option>VIII</option><option>IX</option><option>X</option><option>XI</option><option>XII</option></select>'+
-'<label>Password</label><input id="spass" value="1234">'+
-'<button onclick="saveStudent()">Create Student</button> '+
-'<button class="gray" onclick="closeModal()">Cancel</button>'+
-'</div></div>');
+function randomStudentPassword(){
+ var chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
+ var out="";
+ for(var i=0;i<6;i++)out+=chars.charAt(Math.floor(Math.random()*chars.length));
+ return out;
 }
 
-function saveStudent(){
-var name=document.getElementById("sname").value.trim();
-var id=document.getElementById("sid").value.trim().toUpperCase();
-var cl=document.getElementById("sclass").value;
-var pass=document.getElementById("spass").value;
-
-if(!name||!id||!pass){
-alert("Please fill all fields.");
-return;
+function studentForm(editId){
+ var s=editId?findStudent(editId):null;
+ var generatedId=s?s.id:nextStudentId();
+ var generatedPass=s?s.password:randomStudentPassword();
+ var h='<div class="modal" id="modal"><div class="modalbox"><h2>'+(s?"Edit Student":"Add Student")+'</h2><label>Name</label><input id="sName" value="'+esc(s?s.name:"")+'" placeholder="Student name"><label>Student ID</label><input id="sId" value="'+esc(generatedId)+'" placeholder="STU1003" readonly><p class="muted small">Student ID is generated automatically.</p><label>Class</label><select id="sClass">';
+ for(var i=0;i<classes.length;i++)h+='<option '+(s&&s.className===classes[i]?"selected":"")+'>'+classes[i]+'</option>';
+ h+='</select><label>Password</label><input id="sPass" value="'+esc(generatedPass)+'" readonly><p class="muted small">A separate password is generated automatically. You can reset it later.</p><button onclick="saveStudent('+(editId?"true":"false")+')">Save</button> <button class="gray" onclick="closeModal()">Cancel</button></div></div>';
+ document.body.insertAdjacentHTML("beforeend",h);
 }
 
-for(var i=0;i<db.students.length;i++){
-if(db.students[i].id===id){
-alert("Student ID already exists.");
-return;
-}
-}
-
-db.students.push({
-id:id,
-name:name,
-className:cl,
-password:pass,
-active:true
-});
-
-save();
-closeModal();
-render();
+function saveStudent(edit){
+ var name=document.getElementById("sName").value.trim();
+ var id=document.getElementById("sId").value.trim().toUpperCase();
+ var cl=document.getElementById("sClass").value;
+ var pass=document.getElementById("sPass").value;
+ if(!name){alert("Please enter the student name.");return;}
+ if(edit){
+  var s=findStudent(id);
+  if(s){s.name=name;s.className=cl;}
+ }else{
+  data.students.push({id:id,name:name,className:cl,password:pass,active:true});
+ }
+ save();closeModal();render();
+ if(!edit)alert("Student account created.\n\nName: "+name+"\nStudent ID: "+id+"\nPassword: "+pass+"\n\nGive these details only to this student.");
 }
 
-function studentToggle(id){
-for(var i=0;i<db.students.length;i++){
-if(db.students[i].id===id)db.students[i].active=!db.students[i].active;
+function editStudent(id){studentForm(id);}
+
+function resetStudentPassword(id){
+ var s=findStudent(id);
+ if(!s)return;
+ var p=randomStudentPassword();
+ s.password=p;
+ save();
+ alert("Password reset successfully.\n\nStudent: "+s.name+"\nStudent ID: "+s.id+"\nNew Password: "+p+"\n\nGive this new password only to the student.");
 }
-save();
-render();
+
+function toggleStudent(id){
+ var s=findStudent(id);
+ if(s)s.active=!s.active;
+ save();render();
+}
+
+function removeStudent(id){
+ var s=findStudent(id);
+ if(s&&confirm("Delete student account "+s.name+"?")){
+  data.students=data.students.filter(function(x){return x.id!==id;});
+  save();render();
+ }
+}
+
+function findStudent(id){
+ for(var i=0;i<data.students.length;i++)if(data.students[i].id===id)return data.students[i];
+ return null;
+}
+
+function settingsPage(){
+ return '<div class="card"><h2>⚙️ Admin Settings</h2><p class="muted">Change the Admin password used on this browser.</p><div class="danger"><b>Important:</b> this free static version stores the admin password in this browser. It is convenient for now, but it is not server-level security.</div><label>Current password</label><input id="oldAdmin" type="password"><label>New password</label><input id="newAdmin" type="password"><label>Confirm new password</label><input id="newAdmin2" type="password"><button onclick="changeAdminPassword()">Change Admin Password</button></div><div class="card"><h3>Admin access</h3><p class="muted">Normal student login does not show the Admin option. Admin access is opened with the private admin URL.</p></div>';
+}
+
+function changeAdminPassword(){
+ var old=document.getElementById("oldAdmin").value;
+ var n=document.getElementById("newAdmin").value;
+ var n2=document.getElementById("newAdmin2").value;
+ if(old!==adminPassword()){alert("Current password is incorrect.");return;}
+ if(!n||n!==n2){alert("New passwords do not match.");return;}
+ if(n.length<4){alert("Use at least 4 characters.");return;}
+ localStorage.setItem(ADMINKEY,n);
+ alert("Admin password changed successfully.");
+ page="home";
+ render();
+}
+
+function previewClass(){
+ var h='<div class="modal" id="modal"><div class="modalbox"><h2>👁 Preview as Student</h2><p class="muted">Choose a class. This does not change any content assignment.</p><select id="previewClass">';
+ for(var i=0;i<classes.length;i++)h+='<option>'+classes[i]+'</option>';
+ h+='</select><button onclick="showPreview()">Show Preview</button> <button class="gray" onclick="closeModal()">Cancel</button><div id="previewArea"></div></div></div>';
+ document.body.insertAdjacentHTML("beforeend",h);
+}
+
+function showPreview(){
+ var cl=document.getElementById("previewClass").value,arr=[];
+ for(var i=0;i<data.content.length;i++){
+  var x=data.content[i];
+  if(x.open&&x.classes.indexOf(cl)>=0)arr.push(x);
+ }
+ document.getElementById("previewArea").innerHTML='<hr><h3>Student view — Class '+esc(cl)+'</h3>'+itemsHtml(arr);
+}
+
+function previewOne(id){
+ var x=findContent(id);
+ if(!x)return;
+ var h='<div class="modal" id="modal"><div class="modalbox"><h2>👁 Preview: '+esc(x.title)+'</h2><p class="muted">Assigned to: '+x.classes.join(", ")+' • '+(x.open?"Published":"Hidden")+'</p><button onclick="openResource('+x.id+')">Open Resource</button> <button class="gray" onclick="closeModal()">Close</button></div></div>';
+ document.body.insertAdjacentHTML("beforeend",h);
 }
 
 function closeModal(){
-var m=document.getElementById("modal");
-if(m)m.remove();
+ var m=document.getElementById("modal");
+ if(m)m.remove();
 }
 
 load();
