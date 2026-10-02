@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MUKHERJEE ENGLISH TUTORIAL</title>
 
@@ -9,173 +9,225 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f4f7fb;
-color:#172033
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#172033
 }
+
 header{
-background:linear-gradient(135deg,#123b68,#2870df);
-color:#fff;
-padding:20px 6%;
-box-shadow:0 3px 15px #0002
+  background:linear-gradient(135deg,#1e4f91,#2876df);
+  color:#fff;
+  padding:28px 6%
 }
-.brand{font-size:23px;font-weight:800}
-.sub{font-size:13px;margin-top:5px;opacity:.9}
-.wrap{max-width:1100px;margin:25px auto;padding:0 16px}
+
+.brand{
+  font-size:30px;
+  font-weight:800
+}
+
+.sub{
+  font-size:16px;
+  margin-top:8px;
+  font-weight:700
+}
+
+.wrap{
+  max-width:1100px;
+  margin:22px auto;
+  padding:0 16px
+}
+
 .card{
-background:#fff;
-border:1px solid #e1e7ef;
-border-radius:16px;
-padding:20px;
-margin:15px 0;
-box-shadow:0 5px 20px #17365d0b
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:20px;
+  margin:14px 0;
+  box-shadow:0 4px 18px #102a430d
 }
-.login{max-width:430px;margin:50px auto}
-input,select,textarea{
-width:100%;
-padding:12px;
-margin:6px 0 13px;
-border:1px solid #d6deea;
-border-radius:10px;
-font:inherit
+
+.login{
+  max-width:460px;
+  margin:45px auto
 }
-button{
-border:0;
-border-radius:10px;
-padding:11px 15px;
-background:#2870df;
-color:#fff;
-font-weight:700;
-cursor:pointer;
-margin:3px
-}
-button.secondary{
-background:#fff;
-color:#123b68;
-border:1px solid #ccd7e5
-}
-button.danger{background:#c43d3d}
-.nav{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-margin:18px 0
-}
-.nav button{
-background:#fff;
-color:#123b68;
-border:1px solid #d8e1ec
-}
-.nav button.on{
-background:#123b68;
-color:#fff
-}
+
 .grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px
 }
-.stat{font-size:30px;font-weight:800}
-.muted{color:#687386}
+
+.nav{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:15px 0
+}
+
+.nav button{
+  background:#fff;
+  color:#17477f;
+  border:1px solid #d6deea
+}
+
+.nav button.active{
+  background:#17477f;
+  color:#fff
+}
+
+.stat{
+  font-size:30px;
+  font-weight:800
+}
+
+.muted{
+  color:#687386
+}
+
 .notice{
-background:#eef5ff;
-padding:13px;
-border-radius:12px;
-margin:12px 0
+  padding:12px;
+  border-radius:10px;
+  background:#eef5ff;
+  margin:10px 0
 }
-.success{
-background:#eaf8ef;
-color:#176c43;
-padding:13px;
-border-radius:12px;
-margin:12px 0
+
+.danger{
+  padding:12px;
+  border-radius:10px;
+  background:#fff1f1;
+  border:1px solid #f0caca;
+  margin:10px 0
 }
-.error{
-background:#fff0f0;
-color:#a52d2d;
-padding:13px;
-border-radius:12px;
-margin:12px 0
+
+.ok{
+  padding:12px;
+  border-radius:10px;
+  background:#effaf4;
+  border:1px solid #ccebd9;
+  margin:10px 0
 }
+
+label{
+  display:block;
+  font-weight:700;
+  margin:10px 0 5px
+}
+
+input,select,textarea{
+  width:100%;
+  padding:11px;
+  border:1px solid #d5deea;
+  border-radius:9px;
+  background:#fff
+}
+
+textarea{
+  min-height:90px
+}
+
+button{
+  border:0;
+  border-radius:9px;
+  padding:11px 14px;
+  background:#2166c2;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  margin:4px 2px
+}
+
+.gray{
+  background:#667085
+}
+
+.red{
+  background:#b42318
+}
+
+.green{
+  background:#087443
+}
+
 .item{
-padding:15px 0;
-border-bottom:1px solid #edf0f4
+  padding:14px 0;
+  border-bottom:1px solid #edf0f4;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center
 }
-.item:last-child{border-bottom:0}
-.flex{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:12px;
-flex-wrap:wrap
-}
+
 .pill{
-display:inline-block;
-padding:5px 9px;
-border-radius:20px;
-font-size:11px;
-font-weight:800;
-background:#e8f7ef;
-color:#16805a
+  font-size:11px;
+  padding:5px 8px;
+  border-radius:20px;
+  background:#edf2f7
 }
-.pill.off{
-background:#fceaea;
-color:#a52d2d
-}
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:15px
-}
-th,td{
-text-align:left;
-padding:11px 8px;
-border-bottom:1px solid #edf0f4;
-font-size:14px
-}
-.empty{
-text-align:center;
-padding:30px;
-color:#687386
-}
-.small{font-size:12px}
+
 .modal{
-position:fixed;
-inset:0;
-background:#071a2d99;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:16px;
-z-index:20
+  position:fixed;
+  inset:0;
+  background:#081b2bcc;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:20
 }
+
 .modalbox{
-background:#fff;
-border-radius:18px;
-padding:22px;
-width:100%;
-max-width:620px;
-max-height:90vh;
-overflow:auto
+  background:#fff;
+  border-radius:16px;
+  padding:20px;
+  width:100%;
+  max-width:650px;
+  max-height:92vh;
+  overflow:auto
 }
-.hidden{display:none}
-.option{
-border:1px solid #d9e1eb;
-padding:10px;
-border-radius:10px;
-margin:8px 0
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:12px
 }
-.result{
-font-size:30px;
-font-weight:800;
-color:#123b68
+
+th,td{
+  text-align:left;
+  padding:10px 7px;
+  border-bottom:1px solid #edf0f4
 }
-@media(max-width:720px){
-.grid{grid-template-columns:1fr}
-table{display:block;overflow-x:auto;white-space:nowrap}
-.brand{font-size:20px}
+
+a{
+  color:#175fc0;
+  font-weight:700
+}
+
+.small{
+  font-size:12px
+}
+
+@media(max-width:700px){
+  .grid{
+    grid-template-columns:1fr
+  }
+
+  .brand{
+    font-size:25px
+  }
+
+  .item{
+    align-items:flex-start;
+    flex-direction:column
+  }
+
+  table{
+    display:block;
+    overflow:auto;
+    white-space:nowrap
+  }
 }
 </style>
 </head>
@@ -183,1243 +235,2248 @@ table{display:block;overflow-x:auto;white-space:nowrap}
 <body>
 
 <header>
-<div class="brand">MUKHERJEE ENGLISH TUTORIAL</div>
-<div class="sub">KONNAGAR, HOOGHLY • Amitava Sir</div>
+  <div class="brand">MUKHERJEE ENGLISH TUTORIAL</div>
+  <div class="sub">KONNAGAR, HOOGHLY • Amitava Sir</div>
 </header>
 
-<div id="app" class="wrap"></div>
+<main id="app" class="wrap"></main>
 
 <script>
 
 const SUPABASE_URL =
-"https://gsytlzquntkqdekqevkj.supabase.co";
+'https://gsytlzquntkqdekqevkj.supabase.co';
 
-const SUPABASE_PUBLISHABLE_KEY =
-"sb_publishable_W0MSP0P49Wx9WOR0lHz6bA_DWtEjYXG";
+const SUPABASE_KEY =
+'sb_publishable_W0MSP0P49Wx9WOR0lHz6bA_DWtEjYXG';
 
-const supabase =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_PUBLISHABLE_KEY
-);
+const sb =
+supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-let currentUser=null;
-let currentProfile=null;
-let currentStudent=null;
-let tab="home";
-let selectedTest=null;
+let user=null;
+let mode='student';
+let tab='home';
+let courses=[];
+let levels=[];
 
-const app=document.getElementById("app");
+const $=id=>document.getElementById(id);
 
-function esc(v){
-return String(v ?? "")
-.replace(/[&<>"']/g,m=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
+const esc=v=>
+String(v??'').replace(/[&<>"']/g,m=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
 }[m]));
+
+function err(e){
+  console.error(e);
+  alert(e?.message||String(e)||'Something went wrong.');
 }
 
-function setLoading(){
-app.innerHTML=`
-<div class="card">
-<h2>Loading...</h2>
-<p class="muted">Please wait.</p>
-</div>`;
-}
 
-function showError(msg){
-app.innerHTML=`
-<div class="card">
-<h2>Something went wrong</h2>
-<div class="error">${esc(msg)}</div>
-<button onclick="location.reload()">Reload</button>
-</div>`;
-}
-
-function studentEmail(studentId){
-return String(studentId).trim().toLowerCase()
-+"@students.amitava-english.local";
-}
+/* =========================
+   START
+========================= */
 
 async function start(){
 
-setLoading();
+  try{
 
-const {data,error}=await supabase.auth.getSession();
+    const {
+      data:{session}
+    }=await sb.auth.getSession();
 
-if(error){
-showError(error.message);
-return;
+    if(session){
+
+      user=session.user;
+
+      const p=await sb
+        .from('profiles')
+        .select('role,full_name')
+        .eq('id',session.user.id)
+        .maybeSingle();
+
+      if(p.data && p.data.role==='admin'){
+        mode='admin';
+        await adminHome();
+      }else{
+        mode='student';
+        await studentHome();
+      }
+
+    }else{
+      login();
+    }
+
+  }catch(e){
+
+    document.getElementById('app').innerHTML=
+    '<div class="card danger">'+
+    '<b>App startup error</b><br>'+
+    esc(e.message)+
+    '</div>';
+
+    console.error(e);
+  }
 }
 
-if(!data.session){
-loginPage();
-return;
+
+/* =========================
+   LOGIN
+========================= */
+
+function login(){
+
+  document.getElementById('app').innerHTML=`
+
+  <div class="card login">
+
+    <h1>Welcome 👋</h1>
+
+    <p class="muted">
+      Amitava Sir English Learning Hub
+    </p>
+
+    <div class="notice">
+      Students use the Student ID and password
+      given by Amitava Sir.
+    </div>
+
+    <label>Login type</label>
+
+    <select id="loginType" onchange="switchLogin()">
+
+      <option value="student">
+        Student
+      </option>
+
+      <option value="admin">
+        Admin
+      </option>
+
+    </select>
+
+    <div id="loginFields"></div>
+
+  </div>
+
+  `;
+
+  switchLogin();
 }
 
-await loadLoggedUser(data.session.user);
+
+function switchLogin(){
+
+  const admin=
+    $('loginType').value==='admin';
+
+  $('loginFields').innerHTML=
+
+  admin?
+
+  `
+
+  <label>Email</label>
+
+  <input
+    id="email"
+    type="email"
+    placeholder="Admin email"
+  >
+
+  <label>Password</label>
+
+  <input
+    id="pass"
+    type="password"
+    placeholder="Admin password"
+  >
+
+  <button onclick="adminLogin()">
+    Admin Login
+  </button>
+
+  `
+
+  :
+
+  `
+
+  <label>Student ID</label>
+
+  <input
+    id="sid"
+    placeholder="STU1001"
+  >
+
+  <label>Password</label>
+
+  <input
+    id="spass"
+    type="password"
+    placeholder="Password"
+  >
+
+  <button onclick="studentLogin()">
+    Student Login
+  </button>
+
+  <p class="muted small">
+    There is no student-side Forgot Password.
+    Contact your teacher for a reset.
+  </p>
+
+  `;
 }
 
-async function loadLoggedUser(user){
 
-currentUser=user;
+/* =========================
+   ADMIN LOGIN
+========================= */
 
-const {data:profile,error}=await supabase
-.from("profiles")
-.select("*")
-.eq("id",user.id)
-.single();
+async function adminLogin(){
 
-if(error){
-showError(error.message);
-return;
+  try{
+
+    const {
+      data,
+      error
+    }=
+    await sb.auth.signInWithPassword({
+
+      email:$('email').value.trim(),
+
+      password:$('pass').value
+
+    });
+
+    if(error) throw error;
+
+    user=data.user;
+    mode='admin';
+    tab='home';
+
+    await adminHome();
+
+  }catch(e){
+
+    err(e);
+
+  }
 }
 
-currentProfile=profile;
 
-if(profile.role==="admin"){
-tab="home";
-await adminPage();
-return;
+/* =========================
+   STUDENT LOGIN
+========================= */
+
+async function studentLogin(){
+
+  try{
+
+    const r=
+    await fetch(
+
+      SUPABASE_URL+
+      '/functions/v1/student-login',
+
+      {
+        method:'POST',
+
+        headers:{
+          'Content-Type':
+          'application/json'
+        },
+
+        body:JSON.stringify({
+
+          student_id:
+          $('sid').value.trim(),
+
+          password:
+          $('spass').value
+
+        })
+
+      }
+
+    );
+
+    const j=await r.json();
+
+    if(!r.ok){
+
+      throw new Error(
+        j.error||
+        'Student login failed.'
+      );
+
+    }
+
+    if(
+      j.access_token &&
+      j.refresh_token
+    ){
+
+      await sb.auth.setSession({
+
+        access_token:
+        j.access_token,
+
+        refresh_token:
+        j.refresh_token
+
+      });
+
+    }
+
+    user=j.student||j;
+
+    mode='student';
+    tab='home';
+
+    await studentHome();
+
+  }catch(e){
+
+    err(e);
+
+  }
 }
 
-const {data:student,error:studentError}=await supabase
-.from("students")
-.select("*")
-.eq("auth_user_id",user.id)
-.single();
 
-if(studentError){
-showError(studentError.message);
-return;
+/* =========================
+   COMMON
+========================= */
+
+function top(title,sub){
+
+  return `
+
+  <div class="card">
+
+    <h1>${esc(title)}</h1>
+
+    <p class="muted">
+      ${esc(sub||'')}
+    </p>
+
+  </div>
+
+  `;
 }
 
-if(!student.active){
-await supabase.auth.signOut();
-showError("This student account is inactive. Please contact Amitava Sir.");
-return;
-}
-
-currentStudent=student;
-tab="home";
-await studentPage();
-}
-
-function loginPage(){
-
-app.innerHTML=`
-<div class="card login">
-
-<h1>Welcome 👋</h1>
-
-<p class="muted">
-Amitava Sir's English Learning Hub
-</p>
-
-<label>Login type</label>
-
-<select id="loginRole">
-<option value="student">Student</option>
-<option value="admin">Admin</option>
-</select>
-
-<label id="loginIdLabel">Student ID</label>
-
-<input
-id="loginId"
-placeholder="Example: STU1001"
-autocomplete="username"
->
-
-<label>Password</label>
-
-<input
-id="loginPassword"
-type="password"
-placeholder="Enter password"
-autocomplete="current-password"
->
-
-<button onclick="doLogin()">
-Login
-</button>
-
-<div class="notice small">
-Students do not have a Forgot Password option.
-If you forget your password, contact Amitava Sir.
-</div>
-
-</div>`;
-
-document.getElementById("loginRole")
-.addEventListener("change",function(){
-
-document.getElementById("loginIdLabel").textContent=
-this.value==="admin"
-?"Admin Email"
-:"Student ID";
-
-document.getElementById("loginId").placeholder=
-this.value==="admin"
-?"Enter admin email"
-:"Example: STU1001";
-});
-}
-
-async function doLogin(){
-
-const role=document.getElementById("loginRole").value;
-const id=document.getElementById("loginId").value.trim();
-const password=document.getElementById("loginPassword").value;
-
-if(!id||!password){
-alert("Please enter your login details.");
-return;
-}
-
-const email=
-role==="admin"
-?id
-:studentEmail(id);
-
-const {error}=await supabase.auth.signInWithPassword({
-email,
-password
-});
-
-if(error){
-alert("Login failed: "+error.message);
-return;
-}
-
-location.reload();
-}
-
-async function logout(){
-
-await supabase.auth.signOut();
-
-currentUser=null;
-currentProfile=null;
-currentStudent=null;
-
-loginPage();
-}
 
 function nav(items){
 
-return`
-<div class="nav">
+  return `
 
-${items.map(x=>`
-<button
-class="${tab===x[0]?"on":""}"
-onclick="tab='${x[0]}';renderCurrent()">
-${x[1]}
-</button>
-`).join("")}
+  <div class="nav">
 
-<button
-class="secondary"
-onclick="logout()">
-Logout
-</button>
+  ${
+    items.map(x=>
 
-</div>`;
+      `<button
+        class="${tab===x[0]?'active':''}"
+        onclick="tab='${x[0]}';render()"
+      >
+        ${x[1]}
+      </button>`
+
+    ).join('')
+  }
+
+  <button
+    class="gray"
+    onclick="logout()"
+  >
+    Logout
+  </button>
+
+  </div>
+
+  `;
 }
 
-async function renderCurrent(){
 
-if(currentProfile?.role==="admin"){
-await adminPage();
-}else{
-await studentPage();
-}
-}
+async function logout(){
 
-/* ================= STUDENT ================= */
+  await sb.auth.signOut();
 
-async function studentPage(){
+  user=null;
+  mode='student';
 
-const {data:content,error}=await supabase
-.from("content")
-.select("*")
-.eq("published",true)
-.eq("course_id",currentStudent.course_id)
-.eq("level_id",currentStudent.level_id)
-.order("created_at",{ascending:false});
-
-if(error){
-showError(error.message);
-return;
+  login();
 }
 
-let body="";
 
-if(tab==="home"){
+async function render(){
 
-body=`
-<div class="card">
-<h2>Welcome, ${esc(currentStudent.full_name)} 👋</h2>
+  if(mode==='admin'){
 
-<div class="notice">
-Your account is active. Your teacher's published
-learning materials will appear here.
-</div>
+    await adminHome();
 
-<p>
-<b>Student ID:</b> ${esc(currentStudent.student_id)}
-</p>
+  }else{
 
-</div>
+    await studentHome();
 
-<div class="grid">
+  }
 
-<div class="card">
-<div class="muted">Notes</div>
-<div class="stat">
-${(content||[]).filter(x=>x.content_type==="Notes").length}
-</div>
-</div>
-
-<div class="card">
-<div class="muted">Videos</div>
-<div class="stat">
-${(content||[]).filter(x=>x.content_type==="Video").length}
-</div>
-</div>
-
-<div class="card">
-<div class="muted">Tests</div>
-<div class="stat">
-${(content||[]).filter(x=>x.content_type==="Test").length}
-</div>
-</div>
-
-</div>
-
-<div class="card">
-<h2>Latest Learning Materials</h2>
-
-${
-content?.length
-?content.map(studentContent).join("")
-:`<div class="empty">
-No published material yet.
-</div>`
 }
 
-</div>`;
 
-}else{
+/* =========================
+   COURSE / LEVEL DATA
+========================= */
 
-let type=
-tab==="notes"?"Notes":
-tab==="videos"?"Video":
-"Test";
+async function loadStructure(){
 
-const filtered=(content||[])
-.filter(x=>x.content_type===type);
+  const a=
+  await sb
+  .from('courses')
+  .select('*')
+  .order('name');
 
-body=`
-<div class="card">
+  if(a.error) throw a.error;
 
-<h2>
-${
-type==="Notes"
-?"📚 Notes":
-type==="Video"
-?"🎥 Videos":
-"📝 Tests"
-}
-</h2>
+  courses=a.data||[];
 
-${
-filtered.length
-?filtered.map(studentContent).join("")
-:`<div class="empty">
-Nothing published yet.
-</div>`
+
+  const b=
+  await sb
+  .from('levels')
+  .select('*')
+  .order('name');
+
+  if(b.error) throw b.error;
+
+  levels=b.data||[];
+
 }
 
-</div>`;
+
+/* =========================
+   ADMIN DASHBOARD
+========================= */
+
+async function adminHome(){
+
+  try{
+
+    await loadStructure();
+
+    const [
+      {count:sc},
+      {count:cc},
+      {count:tc},
+      {count:rc}
+    ]=
+
+    await Promise.all([
+
+      sb
+      .from('students')
+      .select('*',{count:'exact',head:true}),
+
+      sb
+      .from('content')
+      .select('*',{count:'exact',head:true}),
+
+      sb
+      .from('tests')
+      .select('*',{count:'exact',head:true}),
+
+      sb
+      .from('test_attempts')
+      .select('*',{count:'exact',head:true})
+
+    ]);
+
+
+    document.getElementById('app').innerHTML=
+
+    top(
+      'Admin Dashboard',
+      'Amitava Sir — full control'
+    )
+
+    +
+
+    nav([
+
+      ['home','📊 Dashboard'],
+
+      ['students','👨‍🎓 Students'],
+
+      ['content','📚 Content'],
+
+      ['courses','📁 Courses & Groups'],
+
+      ['tests','📝 Tests'],
+
+      ['results','📈 Results']
+
+    ])
+
+    +
+
+    (
+
+      tab==='home'
+
+      ?
+
+      `
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="muted">
+            Students
+          </div>
+          <div class="stat">
+            ${sc??0}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="muted">
+            Content
+          </div>
+          <div class="stat">
+            ${cc??0}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="muted">
+            Tests
+          </div>
+          <div class="stat">
+            ${tc??0}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="muted">
+            Attempts
+          </div>
+          <div class="stat">
+            ${rc??0}
+          </div>
+        </div>
+
+      </div>
+
+      `
+
+      :
+
+      tab==='students'
+      ?await studentsPage()
+
+      :
+
+      tab==='content'
+      ?await contentPage()
+
+      :
+
+      tab==='courses'
+      ?await coursesPage()
+
+      :
+
+      tab==='tests'
+      ?await testsPage()
+
+      :
+
+      await resultsPage()
+
+    );
+
+  }catch(e){
+
+    document.getElementById('app').innerHTML=
+
+    top(
+      'Admin Dashboard',
+      ''
+    )
+
+    +
+
+    `
+
+    <div class="card danger">
+
+      <b>Database error</b>
+
+      <br>
+
+      ${esc(e.message)}
+
+    </div>
+
+    `;
+
+    console.error(e);
+
+  }
+
 }
 
-app.innerHTML=`
-<h1>Student Dashboard</h1>
 
-<p class="muted">
-${esc(currentStudent.full_name)}
-</p>
+/* =========================
+   STUDENTS
+========================= */
 
-${nav([
-["home","🏠 Home"],
-["notes","📚 Notes"],
-["videos","🎥 Videos"],
-["tests","📝 Tests"]
-])}
+async function studentsPage(){
 
-${body}`;
+  const r=
+  await sb
+  .from('students')
+  .select('*')
+  .order(
+    'created_at',
+    {ascending:false}
+  );
+
+  if(r.error) throw r.error;
+
+
+  return `
+
+  <div class="card">
+
+    <div
+      style="
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap
+      "
+    >
+
+      <div>
+
+        <h2>
+          Students
+        </h2>
+
+        <p class="muted">
+          Create, activate, deactivate
+          or reset accounts.
+        </p>
+
+      </div>
+
+      <button
+        onclick="studentModal()"
+      >
+        + Create Student
+      </button>
+
+    </div>
+
+
+    <table>
+
+      <tr>
+        <th>Name</th>
+        <th>Student ID</th>
+        <th>Course</th>
+        <th>Level</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+
+      ${
+        (r.data||[]).map(s=>
+
+        `
+
+        <tr>
+
+          <td>
+            ${esc(s.full_name)}
+          </td>
+
+          <td>
+            ${esc(
+              s.student_code||
+              s.student_id||
+              '-'
+            )}
+          </td>
+
+          <td>
+            ${esc(
+              (courses.find(
+                c=>c.id===s.course_id
+              )||{}).name||'-'
+            )}
+          </td>
+
+          <td>
+            ${esc(
+              (levels.find(
+                l=>l.id===s.level_id
+              )||{}).name||'-'
+            )}
+          </td>
+
+          <td>
+            ${
+              s.active
+              ?'🟢 Active'
+              :'🔒 Inactive'
+            }
+          </td>
+
+          <td>
+
+            <button
+              onclick="
+              setStudent(
+                '${s.id}',
+                ${!s.active}
+              )"
+            >
+              ${
+                s.active
+                ?'Deactivate'
+                :'Activate'
+              }
+            </button>
+
+            <button
+              class="gray"
+              onclick="
+              resetStudent('${s.id}')
+              "
+            >
+              Reset
+            </button>
+
+          </td>
+
+        </tr>
+
+        `
+
+        ).join('')
+
+        ||
+
+        `
+
+        <tr>
+          <td colspan="6">
+            No students yet.
+          </td>
+        </tr>
+
+        `
+
+      }
+
+    </table>
+
+  </div>
+
+  `;
+
 }
 
-function studentContent(x){
 
-return`
-<div class="item">
+/* =========================
+   CREATE STUDENT
+========================= */
 
-<div class="flex">
+function studentModal(){
 
-<div>
-<b>${esc(x.title)}</b>
+  document.body.insertAdjacentHTML(
 
-<div class="muted">
-${esc(x.description||"")}
-</div>
-</div>
+    'beforeend',
 
-<span class="pill">
-${esc(x.content_type)}
-</span>
+    `
 
-<button onclick="openResource('${x.id}')">
+    <div
+      class="modal"
+      id="modal"
+    >
 
-${
-x.content_type==="Notes"
-?"📖 Open":
-x.content_type==="Video"
-?"▶ Watch":
-"📝 Start Test"
+      <div class="modalbox">
+
+        <h2>
+          Create Student
+        </h2>
+
+        <label>
+          Student name
+        </label>
+
+        <input id="n">
+
+        <label>
+          Course
+        </label>
+
+        <select id="c">
+
+          ${
+            courses.map(x=>
+
+              `<option
+                value="${x.id}"
+              >
+                ${esc(x.name)}
+              </option>`
+
+            ).join('')
+          }
+
+        </select>
+
+        <label>
+          Level / Group
+        </label>
+
+        <select id="l">
+
+          ${
+            levels.map(x=>
+
+              `<option
+                value="${x.id}"
+              >
+                ${esc(x.name)}
+              </option>`
+
+            ).join('')
+          }
+
+        </select>
+
+        <p class="muted small">
+
+          Student ID and random password
+          will be generated automatically.
+
+        </p>
+
+        <button
+          onclick="createStudent()"
+        >
+          Create
+        </button>
+
+        <button
+          class="gray"
+          onclick="closeModal()"
+        >
+          Cancel
+        </button>
+
+      </div>
+
+    </div>
+
+    `
+
+  );
+
 }
 
-</button>
-
-</div>
-
-</div>`;
-}
-
-async function openResource(id){
-
-const {data:x,error}=await supabase
-.from("content")
-.select("*")
-.eq("id",id)
-.single();
-
-if(error){
-alert(error.message);
-return;
-}
-
-if(x.content_type==="Test"){
-await openTest(x);
-return;
-}
-
-if(!x.url){
-alert("Your teacher has not added the link yet.");
-return;
-}
-
-window.open(x.url,"_blank");
-}
-
-/* ================= TESTS ================= */
-
-async function openTest(content){
-
-const {data:test,error}=await supabase
-.from("tests")
-.select("*")
-.eq("content_id",content.id)
-.single();
-
-if(error){
-alert("Test is not configured yet.");
-return;
-}
-
-const {data:questions,error:qError}=await supabase
-.from("test_questions")
-.select("*")
-.eq("test_id",test.id)
-.order("question_no",{ascending:true});
-
-if(qError){
-alert(qError.message);
-return;
-}
-
-selectedTest={
-content,
-test,
-questions:questions||[]
-};
-
-let html=`
-<div class="modal">
-<div class="modalbox">
-
-<div class="flex">
-<h2>${esc(test.title||content.title)}</h2>
-<button class="secondary"
-onclick="closeModal()">✕</button>
-</div>
-
-<div class="notice">
-Total Marks: ${esc(test.total_marks||15)}
-</div>
-`;
-
-for(let i=0;i<selectedTest.questions.length;i++){
-
-const q=selectedTest.questions[i];
-
-const {data:options}=await supabase
-.from("test_options")
-.select("*")
-.eq("question_id",q.id)
-.order("option_no",{ascending:true});
-
-html+=`
-<div class="item">
-
-<b>
-Q${i+1}. ${esc(q.question_text)}
-</b>
-
-<div>
-${
-(options||[]).map(o=>`
-<label class="option">
-<input
-type="radio"
-name="q_${q.id}"
-value="${o.id}">
-${esc(o.option_text)}
-</label>
-`).join("")
-}
-</div>
-
-</div>`;
-}
-
-html+=`
-<button onclick="submitTest()">
-Submit Test
-</button>
-
-</div>
-</div>`;
-
-const div=document.createElement("div");
-div.id="modal";
-div.innerHTML=html;
-document.body.appendChild(div);
-}
-
-function closeModal(){
-const m=document.getElementById("modal");
-if(m)m.remove();
-}
-
-async function submitTest(){
-
-if(!selectedTest)return;
-
-const answers=[];
-
-for(const q of selectedTest.questions){
-
-const selected=
-document.querySelector(
-`input[name="q_${q.id}"]:checked`
-);
-
-answers.push({
-question_id:q.id,
-selected_option_id:selected?selected.value:null
-});
-}
-
-const unanswered=answers.filter(x=>!x.selected_option_id).length;
-
-if(unanswered){
-if(!confirm(
-unanswered+
-" question(s) are unanswered. Submit anyway?"
-))return;
-}
-
-/*
-The final grading/write operation will be performed
-by the secure Edge Function added in the next step.
-*/
-
-alert(
-"Your test interface is ready. The secure submission/grading service will be connected next."
-);
-
-closeModal();
-}
-
-/* ================= ADMIN ================= */
-
-async function adminPage(){
-
-if(tab==="home")return adminDashboard();
-if(tab==="students")return adminStudents();
-if(tab==="content")return adminContent();
-if(tab==="courses")return adminCourses();
-if(tab==="results")return adminResults();
-
-return adminDashboard();
-}
-
-async function adminDashboard(){
-
-const [
-students,
-content,
-courses,
-tests
-]=await Promise.all([
-
-supabase
-.from("students")
-.select("*",{count:"exact",head:true}),
-
-supabase
-.from("content")
-.select("*",{count:"exact",head:true}),
-
-supabase
-.from("courses")
-.select("*",{count:"exact",head:true}),
-
-supabase
-.from("tests")
-.select("*",{count:"exact",head:true})
-
-]);
-
-app.innerHTML=`
-
-<h1>Admin Dashboard</h1>
-
-<p class="muted">
-MUKHERJEE ENGLISH TUTORIAL • Amitava Sir
-</p>
-
-${nav([
-["home","📊 Dashboard"],
-["students","👨‍🎓 Students"],
-["content","📚 Content"],
-["courses","🎓 Courses"],
-["results","📈 Results"]
-])}
-
-<div class="grid">
-
-<div class="card">
-<div class="muted">Students</div>
-<div class="stat">${students.count||0}</div>
-</div>
-
-<div class="card">
-<div class="muted">Content</div>
-<div class="stat">${content.count||0}</div>
-</div>
-
-<div class="card">
-<div class="muted">Tests</div>
-<div class="stat">${tests.count||0}</div>
-</div>
-
-</div>
-
-<div class="card">
-<h2>⚙️ Admin Control</h2>
-
-<p class="muted">
-Manage students, courses, levels, learning materials,
-tests and results from one place.
-</p>
-
-<button onclick="tab='students';adminPage()">
-👨‍🎓 Students
-</button>
-
-<button onclick="tab='content';adminPage()">
-📚 Content
-</button>
-
-<button onclick="tab='courses';adminPage()">
-🎓 Courses & Groups
-</button>
-
-<button onclick="tab='results';adminPage()">
-📈 Results
-</button>
-
-</div>`;
-}
-
-async function adminStudents(){
-
-const {data,error}=await supabase
-.from("students")
-.select("*")
-.order("created_at",{ascending:false});
-
-if(error){
-showError(error.message);
-return;
-}
-
-app.innerHTML=`
-
-<h1>👨‍🎓 Students</h1>
-
-${nav([
-["home","📊 Dashboard"],
-["students","👨‍🎓 Students"],
-["content","📚 Content"],
-["courses","🎓 Courses"],
-["results","📈 Results"]
-])}
-
-<div class="card">
-
-<div class="flex">
-
-<div>
-<h2>Student Accounts</h2>
-<p class="muted">
-Create, reset, activate or deactivate students.
-</p>
-</div>
-
-<button onclick="openCreateStudent()">
-+ Add Student
-</button>
-
-</div>
-
-${
-data?.length
-?`
-<table>
-
-<tr>
-<th>Name</th>
-<th>Student ID</th>
-<th>Status</th>
-<th>Actions</th>
-</tr>
-
-${data.map(s=>`
-
-<tr>
-
-<td>${esc(s.full_name)}</td>
-
-<td>
-<b>${esc(s.student_id)}</b>
-</td>
-
-<td>
-${
-s.active
-?'<span class="pill">Active</span>'
-:'<span class="pill off">Blocked</span>'
-}
-</td>
-
-<td>
-
-<button
-onclick="studentStatus('${s.id}',${!s.active})">
-${s.active?"Block":"Activate"}
-</button>
-
-<button
-class="secondary"
-onclick="resetStudent('${s.id}')">
-Reset Password
-</button>
-
-</td>
-
-</tr>
-
-`).join("")}
-
-</table>`
-:`<div class="empty">
-No students created yet.
-</div>`
-}
-
-</div>`;
-}
-
-function openCreateStudent(){
-
-const div=document.createElement("div");
-
-div.id="modal";
-
-div.innerHTML=`
-
-<div class="modal">
-
-<div class="modalbox">
-
-<h2>Create Student</h2>
-
-<label>Student Name</label>
-<input id="newName" placeholder="Student full name">
-
-<label>Student ID</label>
-<input id="newStudentId"
-placeholder="Example: STU1001">
-
-<label>Password</label>
-<input id="newPassword"
-placeholder="Temporary password">
-
-<div class="notice small">
-The secure account creation service will create
-the student's login account and database record.
-</div>
-
-<button onclick="createStudent()">
-Create Student
-</button>
-
-<button class="secondary"
-onclick="closeModal()">
-Cancel
-</button>
-
-</div>
-</div>`;
-
-document.body.appendChild(div);
-}
 
 async function createStudent(){
 
-const full_name=
-document.getElementById("newName").value.trim();
+  try{
 
-const student_id=
-document.getElementById("newStudentId").value.trim();
+    const session=
+    (await sb.auth.getSession())
+    .data.session;
 
-const password=
-document.getElementById("newPassword").value;
+    const r=
+    await fetch(
 
-if(!full_name||!student_id||!password){
-alert("Please fill all fields.");
-return;
+      SUPABASE_URL+
+      '/functions/v1/admin-student',
+
+      {
+
+        method:'POST',
+
+        headers:{
+
+          'Content-Type':
+          'application/json',
+
+          'Authorization':
+          'Bearer '+
+          session.access_token
+
+        },
+
+        body:JSON.stringify({
+
+          action:'create',
+
+          full_name:
+          $('n').value.trim(),
+
+          course_id:
+          $('c').value,
+
+          level_id:
+          $('l').value
+
+        })
+
+      }
+
+    );
+
+    const j=await r.json();
+
+    if(!r.ok){
+
+      throw new Error(
+        j.error||
+        'Create failed'
+      );
+
+    }
+
+    closeModal();
+
+    alert(
+      'Student created.\n\n'+
+      'Student ID: '+
+      j.student_id+
+      '\nPassword: '+
+      j.password
+    );
+
+    await render();
+
+  }catch(e){
+
+    err(e);
+
+  }
+
 }
 
-await callAdminFunction({
-action:"create",
-full_name,
-student_id,
-password
-});
+
+async function setStudent(
+  id,
+  active
+){
+
+  try{
+
+    await callStudent(
+      'set_active',
+      {
+        student_uuid:id,
+        active:active
+      }
+    );
+
+    await render();
+
+  }catch(e){
+
+    err(e);
+
+  }
+
 }
+
 
 async function resetStudent(id){
 
-const password=
-prompt("Enter the new password:");
+  try{
 
-if(!password)return;
+    const j=
+    await callStudent(
+      'reset_password',
+      {
+        student_uuid:id
+      }
+    );
 
-await callAdminFunction({
-action:"reset_password",
-student_id:id,
-password
-});
+    alert(
+      'New password: '+
+      j.password
+    );
+
+    await render();
+
+  }catch(e){
+
+    err(e);
+
+  }
+
 }
 
-async function studentStatus(id,active){
 
-await callAdminFunction({
-action:active?"activate":"deactivate",
-student_id:id
-});
+async function callStudent(
+  action,
+  body
+){
+
+  const session=
+  (await sb.auth.getSession())
+  .data.session;
+
+  const r=
+  await fetch(
+
+    SUPABASE_URL+
+    '/functions/v1/admin-student',
+
+    {
+
+      method:'POST',
+
+      headers:{
+
+        'Content-Type':
+        'application/json',
+
+        'Authorization':
+        'Bearer '+
+        session.access_token
+
+      },
+
+      body:JSON.stringify({
+
+        action,
+        ...body
+
+      })
+
+    }
+
+  );
+
+  const j=await r.json();
+
+  if(!r.ok){
+
+    throw new Error(
+      j.error||
+      'Action failed'
+    );
+
+  }
+
+  return j;
+
 }
 
-async function callAdminFunction(payload){
 
-const {data,error}=await supabase.functions.invoke(
-"admin-student",
-{body:payload}
-);
+/* =========================
+   CONTENT
+========================= */
 
-if(error){
-alert(
-"Secure student service is not connected yet."
-);
-return;
+async function contentPage(){
+
+  const r=
+  await sb
+  .from('content')
+  .select('*')
+  .order(
+    'created_at',
+    {ascending:false}
+  );
+
+  if(r.error) throw r.error;
+
+
+  return `
+
+  <div class="card">
+
+    <div
+      style="
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px
+      "
+    >
+
+      <div>
+
+        <h2>
+          Content Library
+        </h2>
+
+        <p class="muted">
+          Notes/PDF links,
+          YouTube links and tests.
+        </p>
+
+      </div>
+
+      <button
+        onclick="contentModal()"
+      >
+        + Add Content
+      </button>
+
+    </div>
+
+
+    <table>
+
+      <tr>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Course</th>
+        <th>Level</th>
+        <th>Published</th>
+        <th></th>
+      </tr>
+
+      ${
+        (r.data||[]).map(x=>
+
+        `
+
+        <tr>
+
+          <td>
+            ${esc(x.title)}
+          </td>
+
+          <td>
+            ${esc(x.type)}
+          </td>
+
+          <td>
+            ${esc(
+              (courses.find(
+                c=>c.id===x.course_id
+              )||{}).name||'-'
+            )}
+          </td>
+
+          <td>
+            ${esc(
+              (levels.find(
+                l=>l.id===x.level_id
+              )||{}).name||'-'
+            )}
+          </td>
+
+          <td>
+            ${x.published?'🟢':'🔒'}
+          </td>
+
+          <td>
+
+            <button
+              onclick="
+              toggleContent(
+                '${x.id}',
+                ${!x.published}
+              )"
+            >
+              ${
+                x.published
+                ?'Hide'
+                :'Publish'
+              }
+            </button>
+
+            <button
+              class="red"
+              onclick="
+              deleteContent('${x.id}')
+              "
+            >
+              Delete
+            </button>
+
+          </td>
+
+        </tr>
+
+        `
+
+        ).join('')
+
+        ||
+
+        `
+
+        <tr>
+          <td colspan="6">
+            No content yet.
+          </td>
+        </tr>
+
+        `
+
+      }
+
+    </table>
+
+  </div>
+
+  `;
+
 }
 
-if(data?.error){
-alert(data.error);
-return;
+
+function contentModal(){
+
+  document.body.insertAdjacentHTML(
+
+    'beforeend',
+
+    `
+
+    <div
+      class="modal"
+      id="modal"
+    >
+
+      <div class="modalbox">
+
+        <h2>
+          Add Content
+        </h2>
+
+        <label>
+          Title
+        </label>
+
+        <input id="ct">
+
+        <label>
+          Type
+        </label>
+
+        <select id="cy">
+
+          <option value="Notes">
+            Notes / PDF
+          </option>
+
+          <option value="Video">
+            YouTube Video
+          </option>
+
+        </select>
+
+        <label>
+          Course
+        </label>
+
+        <select id="cc">
+
+          ${
+            courses.map(x=>
+
+              `<option
+                value="${x.id}"
+              >
+                ${esc(x.name)}
+              </option>`
+
+            ).join('')
+          }
+
+        </select>
+
+        <label>
+          Level / Group
+        </label>
+
+        <select id="cl">
+
+          ${
+            levels.map(x=>
+
+              `<option
+                value="${x.id}"
+              >
+                ${esc(x.name)}
+              </option>`
+
+            ).join('')
+          }
+
+        </select>
+
+        <label>
+          External URL
+        </label>
+
+        <input
+          id="cu"
+          placeholder="Google Drive or YouTube link"
+        >
+
+        <label>
+          Description
+        </label>
+
+        <textarea id="cd"></textarea>
+
+        <button
+          onclick="saveContent()"
+        >
+          Save Hidden
+        </button>
+
+        <button
+          class="gray"
+          onclick="closeModal()"
+        >
+          Cancel
+        </button>
+
+      </div>
+
+    </div>
+
+    `
+
+  );
+
 }
 
-alert(data?.message||"Done.");
-
-closeModal();
-
-await adminStudents();
-}
-
-/* ================= CONTENT ================= */
-
-async function adminContent(){
-
-const {data,error}=await supabase
-.from("content")
-.select("*")
-.order("created_at",{ascending:false});
-
-if(error){
-showError(error.message);
-return;
-}
-
-app.innerHTML=`
-
-<h1>📚 Content</h1>
-
-${nav([
-["home","📊 Dashboard"],
-["students","👨‍🎓 Students"],
-["content","📚 Content"],
-["courses","🎓 Courses"],
-["results","📈 Results"]
-])}
-
-<div class="card">
-
-<div class="flex">
-
-<div>
-<h2>Learning Materials</h2>
-<p class="muted">
-Notes, YouTube videos and tests.
-</p>
-</div>
-
-<button onclick="openAddContent()">
-+ Add Content
-</button>
-
-</div>
-
-${
-data?.length
-?`
-<table>
-
-<tr>
-<th>Title</th>
-<th>Type</th>
-<th>Status</th>
-</tr>
-
-${data.map(x=>`
-
-<tr>
-
-<td>${esc(x.title)}</td>
-
-<td>${esc(x.content_type)}</td>
-
-<td>
-${
-x.published
-?'<span class="pill">Published</span>'
-:'<span class="pill off">Hidden</span>'
-}
-</td>
-
-</tr>
-
-`).join("")}
-
-</table>`
-:`<div class="empty">
-No content added yet.
-</div>`
-}
-
-</div>`;
-}
-
-function openAddContent(){
-
-const div=document.createElement("div");
-
-div.id="modal";
-
-div.innerHTML=`
-
-<div class="modal">
-
-<div class="modalbox">
-
-<h2>Add Content</h2>
-
-<label>Title</label>
-<input id="ctitle">
-
-<label>Type</label>
-
-<select id="ctype">
-<option>Notes</option>
-<option>Video</option>
-<option>Test</option>
-</select>
-
-<label>Course ID</label>
-<input id="ccourse"
-placeholder="Course UUID">
-
-<label>Level ID</label>
-<input id="clevel"
-placeholder="Level UUID">
-
-<label>External URL</label>
-<input id="curl"
-placeholder="Google Drive or YouTube link">
-
-<label>Description</label>
-<textarea id="cdesc"></textarea>
-
-<button onclick="saveContent()">
-Save Content
-</button>
-
-<button class="secondary"
-onclick="closeModal()">
-Cancel
-</button>
-
-<div class="notice small">
-Course/Level selection will be made easier in the
-next admin UI refinement.
-</div>
-
-</div>
-</div>`;
-
-document.body.appendChild(div);
-}
 
 async function saveContent(){
 
-const title=document.getElementById("ctitle").value.trim();
-const content_type=document.getElementById("ctype").value;
-const course_id=document.getElementById("ccourse").value.trim();
-const level_id=document.getElementById("clevel").value.trim();
-const url=document.getElementById("curl").value.trim();
-const description=document.getElementById("cdesc").value.trim();
+  try{
 
-if(!title||!course_id||!level_id){
-alert("Title, Course ID and Level ID are required.");
-return;
+    const r=
+    await sb
+    .from('content')
+    .insert({
+
+      title:
+      $('ct').value.trim(),
+
+      type:
+      $('cy').value,
+
+      course_id:
+      $('cc').value,
+
+      level_id:
+      $('cl').value,
+
+      url:
+      $('cu').value.trim(),
+
+      description:
+      $('cd').value.trim(),
+
+      published:false
+
+    })
+    .select();
+
+    if(r.error)
+      throw r.error;
+
+    closeModal();
+
+    await render();
+
+  }catch(e){
+
+    err(e);
+
+  }
+
 }
 
-const {error}=await supabase
-.from("content")
-.insert({
-title,
-content_type,
-course_id,
-level_id,
-url:url||null,
-description,
-published:false
-});
 
-if(error){
-alert(error.message);
-return;
+async function toggleContent(
+  id,
+  published
+){
+
+  const r=
+  await sb
+  .from('content')
+  .update({published})
+  .eq('id',id);
+
+  if(r.error)
+    throw r.error;
+
+  await render();
+
 }
 
-alert("Content saved as hidden.");
 
-closeModal();
+async function deleteContent(id){
 
-adminContent();
+  if(
+    !confirm(
+      'Delete this content?'
+    )
+  ) return;
+
+  const r=
+  await sb
+  .from('content')
+  .delete()
+  .eq('id',id);
+
+  if(r.error)
+    throw r.error;
+
+  await render();
+
 }
 
-/* ================= COURSES ================= */
 
-async function adminCourses(){
+/* =========================
+   COURSES / LEVELS
+========================= */
 
-const {data:courses,error}=await supabase
-.from("courses")
-.select("*")
-.order("created_at",{ascending:true});
+async function coursesPage(){
 
-if(error){
-showError(error.message);
-return;
+  return `
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h2>
+        Courses
+      </h2>
+
+      ${
+        courses.map(c=>
+
+        `
+
+        <div class="item">
+
+          <b>
+            ${esc(c.name)}
+          </b>
+
+          <span class="pill">
+            Course
+          </span>
+
+        </div>
+
+        `
+
+        ).join('')
+      }
+
+      <button
+        onclick="addCourse()"
+      >
+        + Add Course
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>
+        Levels / Groups
+      </h2>
+
+      ${
+        levels.map(l=>
+
+        `
+
+        <div class="item">
+
+          <b>
+            ${esc(l.name)}
+          </b>
+
+          <span class="pill">
+
+            ${esc(
+              (courses.find(
+                c=>c.id===l.course_id
+              )||{}).name||''
+            )}
+
+          </span>
+
+        </div>
+
+        `
+
+        ).join('')
+      }
+
+      <button
+        onclick="addLevel()"
+      >
+        + Add Level / Group
+      </button>
+
+    </div>
+
+  </div>
+
+  `;
+
 }
 
-const {data:levels}=await supabase
-.from("levels")
-.select("*")
-.order("created_at",{ascending:true});
 
-app.innerHTML=`
+async function addCourse(){
 
-<h1>🎓 Courses & Groups</h1>
+  const name=
+  prompt(
+    'New course name'
+  );
 
-${nav([
-["home","📊 Dashboard"],
-["students","👨‍🎓 Students"],
-["content","📚 Content"],
-["courses","🎓 Courses"],
-["results","📈 Results"]
-])}
+  if(!name) return;
 
-<div class="card">
+  const r=
+  await sb
+  .from('courses')
+  .insert({
 
-<h2>Courses</h2>
+    name:name.trim(),
+    active:true
 
-${
-courses?.map(c=>`
+  });
 
-<div class="item">
+  if(r.error)
+    throw r.error;
 
-<b>${esc(c.name)}</b>
+  await render();
 
-<div class="muted">
-${esc(c.description||"")}
-</div>
-
-</div>
-
-`).join("")
-||`<div class="empty">No courses.</div>`
 }
 
-</div>
 
-<div class="card">
+async function addLevel(){
 
-<h2>Levels / Groups</h2>
+  if(!courses.length){
 
-${
-levels?.map(l=>`
+    return alert(
+      'Create a course first.'
+    );
 
-<div class="item">
+  }
 
-<b>${esc(l.name)}</b>
+  const name=
+  prompt(
+    'New level / group name'
+  );
 
-<div class="muted">
-Course: ${esc(l.course_id)}
-</div>
+  if(!name) return;
 
-</div>
+  const course=
+  prompt(
+    'Enter the Course ID'
+  );
 
-`).join("")
-||`<div class="empty">No levels.</div>`
+  if(!course) return;
+
+  const r=
+  await sb
+  .from('levels')
+  .insert({
+
+    name:name.trim(),
+
+    course_id:course,
+
+    active:true
+
+  });
+
+  if(r.error)
+    throw r.error;
+
+  await render();
+
 }
 
-</div>`;
+
+/* =========================
+   TESTS
+========================= */
+
+async function testsPage(){
+
+  const r=
+  await sb
+  .from('tests')
+  .select('*')
+  .order(
+    'created_at',
+    {ascending:false}
+  );
+
+  if(r.error)
+    throw r.error;
+
+
+  return `
+
+  <div class="card">
+
+    <h2>
+      Tests
+    </h2>
+
+    <p class="muted">
+      Create 15-mark tests.
+    </p>
+
+    <button
+      onclick="testModal()"
+    >
+      + Create 15-Mark Test
+    </button>
+
+    <table>
+
+      <tr>
+        <th>Title</th>
+        <th>Course</th>
+        <th>Level</th>
+        <th>Marks</th>
+        <th>Published</th>
+      </tr>
+
+      ${
+        (r.data||[]).map(t=>
+
+        `
+
+        <tr>
+
+          <td>
+            ${esc(t.title)}
+          </td>
+
+          <td>
+            ${esc(
+              (courses.find(
+                c=>c.id===t.course_id
+              )||{}).name||'-'
+            )}
+          </td>
+
+          <td>
+            ${esc(
+              (levels.find(
+                l=>l.id===t.level_id
+              )||{}).name||'-'
+            )}
+          </td>
+
+          <td>
+            ${t.total_marks}
+          </td>
+
+          <td>
+            ${t.published?'🟢':'🔒'}
+          </td>
+
+        </tr>
+
+        `
+
+        ).join('')
+
+      }
+
+    </table>
+
+  </div>
+
+  `;
+
 }
 
-/* ================= RESULTS ================= */
 
-async function adminResults(){
+function testModal(){
 
-const {data,error}=await supabase
-.from("test_attempts")
-.select("*")
-.order("created_at",{ascending:false});
+  document.body.insertAdjacentHTML(
 
-if(error){
-showError(error.message);
-return;
+    'beforeend',
+
+    `
+
+    <div
+      class="modal"
+      id="modal"
+    >
+
+      <div class="modalbox">
+
+        <h2>
+          Create Test
+        </h2>
+
+        <label>
+          Test title
+        </label>
+
+        <input id="tt">
+
+        <label>
+          Course
+        </label>
+
+        <select id="tc">
+
+          ${
+            courses.map(x=>
+
+            `<option
+              value="${x.id}"
+            >
+              ${esc(x.name)}
+            </option>`
+
+            ).join('')
+          }
+
+        </select>
+
+        <label>
+          Level / Group
+        </label>
+
+        <select id="tl">
+
+          ${
+            levels.map(x=>
+
+            `<option
+              value="${x.id}"
+            >
+              ${esc(x.name)}
+            </option>`
+
+            ).join('')
+          }
+
+        </select>
+
+        <p class="notice">
+
+          Total marks is fixed at
+          <b>15</b>
+          for this first test version.
+
+        </p>
+
+        <button
+          onclick="saveTest()"
+        >
+          Create Test
+        </button>
+
+        <button
+          class="gray"
+          onclick="closeModal()"
+        >
+          Cancel
+        </button>
+
+      </div>
+
+    </div>
+
+    `
+
+  );
+
 }
 
-app.innerHTML=`
 
-<h1>📈 Test Results</h1>
+async function saveTest(){
 
-${nav([
-["home","📊 Dashboard"],
-["students","👨‍🎓 Students"],
-["content","📚 Content"],
-["courses","🎓 Courses"],
-["results","📈 Results"]
-])}
+  try{
 
-<div class="card">
+    const r=
+    await sb
+    .from('tests')
+    .insert({
 
-<h2>Student Test Attempts</h2>
+      title:
+      $('tt').value.trim(),
 
-${
-data?.length
-?`
-<table>
+      course_id:
+      $('tc').value,
 
-<tr>
-<th>Student</th>
-<th>Test</th>
-<th>Marks</th>
-<th>Date</th>
-</tr>
+      level_id:
+      $('tl').value,
 
-${data.map(a=>`
+      total_marks:15,
 
-<tr>
+      published:false
 
-<td>${esc(a.student_id)}</td>
+    })
+    .select();
 
-<td>${esc(a.test_id)}</td>
+    if(r.error)
+      throw r.error;
 
-<td>
-<b>
-${esc(a.score)}
-/
-${esc(a.total_marks)}
-</b>
-</td>
+    closeModal();
 
-<td>
-${a.created_at
-?new Date(a.created_at).toLocaleString()
-:"-"}
-</td>
+    alert(
+      'Test created.\
+Question editor will be connected next.'
+    );
 
-</tr>
+    await render();
 
-`).join("")}
+  }catch(e){
 
-</table>`
-:`<div class="empty">
-No test attempts yet.
-</div>`
+    err(e);
+
+  }
+
 }
 
-</div>`;
+
+/* =========================
+   RESULTS
+========================= */
+
+async function resultsPage(){
+
+  const r=
+  await sb
+  .from('test_attempts')
+  .select('*')
+  .order(
+    'submitted_at',
+    {ascending:false}
+  );
+
+  if(r.error)
+    throw r.error;
+
+
+  return `
+
+  <div class="card">
+
+    <h2>
+      Test Results
+    </h2>
+
+    <table>
+
+      <tr>
+        <th>Student</th>
+        <th>Test</th>
+        <th>Marks</th>
+        <th>Submitted</th>
+      </tr>
+
+      ${
+        (r.data||[]).map(a=>
+
+        `
+
+        <tr>
+
+          <td>
+            ${esc(a.student_id)}
+          </td>
+
+          <td>
+            ${esc(a.test_id)}
+          </td>
+
+          <td>
+            ${a.score}/${a.total_marks}
+          </td>
+
+          <td>
+            ${
+              a.submitted_at
+              ?new Date(
+                a.submitted_at
+              ).toLocaleString()
+              :'-'
+            }
+          </td>
+
+        </tr>
+
+        `
+
+        ).join('')
+
+        ||
+
+        `
+
+        <tr>
+          <td colspan="4">
+            No attempts yet.
+          </td>
+        </tr>
+
+        `
+
+      }
+
+    </table>
+
+  </div>
+
+  `;
+
 }
+
+
+/* =========================
+   STUDENT
+========================= */
+
+async function studentHome(){
+
+  try{
+
+    const r=
+    await sb
+    .from('content')
+    .select('*')
+    .eq(
+      'published',
+      true
+    )
+    .order(
+      'created_at',
+      {ascending:false}
+    );
+
+    if(r.error)
+      throw r.error;
+
+    const items=
+    r.data||[];
+
+
+    document.getElementById('app').innerHTML=
+
+    top(
+      'Student Dashboard',
+      user?.full_name
+      ?'Welcome, '+user.full_name
+      :'Your course materials'
+    )
+
+    +
+
+    nav([
+
+      ['home','🏠 Home'],
+
+      ['notes','📚 Notes'],
+
+      ['videos','🎥 Videos'],
+
+      ['tests','📝 Tests'],
+
+      ['results','📈 My Results']
+
+    ])
+
+    +
+
+    (
+
+      tab==='home'
+
+      ?
+
+      `
+
+      <div class="card">
+
+        <h2>
+          Available Learning
+        </h2>
+
+        ${
+          items.map(studentItem)
+          .join('')
+
+          ||
+
+          '<p class="muted">'+
+          'Your teacher has not published '+
+          'content yet.'+
+          '</p>'
+        }
+
+      </div>
+
+      `
+
+      :
+
+      tab==='notes'
+
+      ?
+
+      `
+
+      <div class="card">
+
+        <h2>
+          Notes / PDFs
+        </h2>
+
+        ${
+          items
+          .filter(
+            x=>x.type==='Notes'
+          )
+          .map(studentItem)
+          .join('')
+
+          ||
+
+          '<p class="muted">'+
+          'No notes available.'+
+          '</p>'
+        }
+
+      </div>
+
+      `
+
+      :
+
+      tab==='videos'
+
+      ?
+
+      `
+
+      <div class="card">
+
+        <h2>
+          Videos
+        </h2>
+
+        ${
+          items
+          .filter(
+            x=>x.type==='Video'
+          )
+          .map(studentItem)
+          .join('')
+
+          ||
+
+          '<p class="muted">'+
+          'No videos available.'+
+          '</p>'
+        }
+
+      </div>
+
+      `
+
+      :
+
+      tab==='tests'
+
+      ?
+
+      `
+
+      <div class="card">
+
+        <h2>
+          Tests
+        </h2>
+
+        ${
+          items
+          .filter(
+            x=>x.type==='Test'
+          )
+          .map(studentItem)
+          .join('')
+
+          ||
+
+          '<p class="muted">'+
+          'No tests available.'+
+          '</p>'
+        }
+
+      </div>
+
+      `
+
+      :
+
+      `
+
+      <div class="card">
+
+        <h2>
+          My Results
+        </h2>
+
+        <p class="muted">
+          Your submitted test results
+          will appear here.
+        </p>
+
+      </div>
+
+      `
+
+    );
+
+  }catch(e){
+
+    document.getElementById('app').innerHTML=
+
+    top(
+      'Student Dashboard',
+      ''
+    )
+
+    +
+
+    `
+
+    <div class="card danger">
+
+      ${esc(e.message)}
+
+    </div>
+
+    `;
+
+  }
+
+}
+
+
+function studentItem(x){
+
+  const action=
+
+    x.url
+
+    ?
+
+    `
+
+    <a
+      href="${esc(x.url)}"
+      target="_blank"
+      rel="noopener"
+    >
+      ${
+        x.type==='Video'
+        ?'Watch'
+        :'Open'
+      }
+    </a>
+
+    `
+
+    :
+
+    `
+
+    <span class="muted">
+      Link not added yet
+    </span>
+
+    `;
+
+
+  return `
+
+  <div class="item">
+
+    <div>
+
+      <b>
+        ${esc(x.title)}
+      </b>
+
+      <div class="muted">
+        ${esc(x.description||'')}
+      </div>
+
+    </div>
+
+    <span class="pill">
+      ${esc(x.type)}
+    </span>
+
+    ${action}
+
+  </div>
+
+  `;
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function closeModal(){
+
+  document
+  .getElementById('modal')
+  ?.remove();
+
+}
+
+
+/* =========================
+   ERROR MONITOR
+========================= */
+
+window.addEventListener(
+  'error',
+  e=>console.error(
+    'JS error:',
+    e.error||e.message
+  )
+);
+
+
+/* =========================
+   START APP
+========================= */
 
 start();
 
