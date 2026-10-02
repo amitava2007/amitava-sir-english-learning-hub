@@ -1,281 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Amitava Sir English Learning Hub</title>
-
 <style>
-:root{
---navy:#123b68;
---blue:#2870df;
---bg:#f4f7fb;
---card:#fff;
---text:#172033;
---muted:#687386;
---line:#e4e9f0;
---green:#16805a;
---red:#c43d3d
-}
-
 *{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:var(--bg);
-color:var(--text)
-}
-
-header{
-background:linear-gradient(135deg,#0d3158,#2870df);
-color:#fff;
-padding:24px 6%;
-box-shadow:0 3px 16px #123b6822
-}
-
-.brand{
-font-size:23px;
-font-weight:800
-}
-
-.sub{
-margin-top:5px;
-opacity:.88;
-font-size:13px
-}
-
-.wrap{
-max-width:1100px;
-margin:24px auto;
-padding:0 16px
-}
-
-.card{
-background:var(--card);
-border:1px solid var(--line);
-border-radius:18px;
-padding:20px;
-margin:15px 0;
-box-shadow:0 5px 20px #17365d0a
-}
-
-.login{
-max-width:430px;
-margin:55px auto
-}
-
-.login h1{
-margin-top:0
-}
-
-input,select,textarea{
-width:100%;
-padding:12px;
-border:1px solid #d6deea;
-border-radius:10px;
-margin:6px 0 13px;
-font:inherit;
-background:#fff
-}
-
-button{
-border:0;
-border-radius:10px;
-padding:10px 14px;
-background:var(--blue);
-color:#fff;
-font-weight:700;
-cursor:pointer
-}
-
-button.secondary{
-background:#fff;
-color:var(--navy);
-border:1px solid #d7e0eb
-}
-
-button.danger{
-background:var(--red)
-}
-
-.nav{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
-margin:18px 0
-}
-
-.nav button{
-background:#fff;
-color:var(--navy);
-border:1px solid #dbe3ed
-}
-
-.nav button.on{
-background:var(--navy);
-color:#fff
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px
-}
-
-.stat{
-font-size:30px;
-font-weight:800
-}
-
-.muted{
-color:var(--muted)
-}
-
-.notice{
-padding:13px;
-border-radius:12px;
-background:#eef5ff
-}
-
-.pill{
-display:inline-block;
-padding:5px 9px;
-border-radius:20px;
-font-size:11px;
-font-weight:800;
-background:#e8f7ef;
-color:var(--green)
-}
-
-.lesson{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:12px;
-padding:15px 0;
-border-bottom:1px solid #edf0f4
-}
-
-.lesson:last-child{
-border-bottom:0
-}
-
-.lesson-info{
-flex:1
-}
-
-.lesson-title{
-font-weight:800;
-margin-bottom:5px
-}
-
-.actions{
-display:flex;
-gap:7px;
-flex-wrap:wrap
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:15px
-}
-
-th,td{
-text-align:left;
-padding:11px 8px;
-border-bottom:1px solid #edf0f4;
-font-size:14px
-}
-
-.empty{
-padding:28px;
-text-align:center;
-color:var(--muted)
-}
-
-.small{
-font-size:12px
-}
-
-.class-chip{
-display:inline-block;
-padding:6px 10px;
-border-radius:10px;
-background:#eef3fa;
-margin:3px;
-font-size:12px;
-font-weight:700
-}
-
-.modal{
-position:fixed;
-inset:0;
-background:#071a2d88;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:16px;
-z-index:10
-}
-
-.modal-box{
-background:#fff;
-border-radius:18px;
-padding:22px;
-max-width:520px;
-width:100%;
-max-height:90vh;
-overflow:auto
-}
-
-.checks{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-margin:7px 0 14px
-}
-
-.check{
-border:1px solid #d7e0eb;
-border-radius:10px;
-padding:8px 10px;
-background:#fff
-}
-
-.check input{
-width:auto;
-margin:0 5px 0 0
-}
-
-@media(max-width:720px){
-.grid{
-grid-template-columns:1fr
-}
-
-.lesson{
-align-items:flex-start;
-flex-direction:column
-}
-
-.actions{
-width:100%
-}
-
-.actions button{
-flex:1
-}
-
-table{
-display:block;
-overflow-x:auto;
-white-space:nowrap
-}
-}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+header{background:linear-gradient(135deg,#123b68,#2870df);color:white;padding:25px 6%}
+.brand{font-size:24px;font-weight:bold}.sub{margin-top:5px;font-size:13px}
+.wrap{max-width:1050px;margin:25px auto;padding:0 16px}
+.card{background:white;border:1px solid #e2e7ee;border-radius:16px;padding:20px;margin:15px 0}
+.login{max-width:420px;margin:50px auto}
+input,select,textarea{width:100%;padding:12px;margin:6px 0 14px;border:1px solid #ccd6e3;border-radius:9px;font:inherit}
+button{padding:10px 14px;border:0;border-radius:9px;background:#2870df;color:white;font-weight:bold}
+.gray{background:white;color:#123b68;border:1px solid #d5deea}
+.red{background:#c43d3d}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.nav button{background:white;color:#123b68;border:1px solid #d5deea}
+.nav .active{background:#123b68;color:white}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stat{font-size:30px;font-weight:bold}.muted{color:#687386}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #edf0f4}
+.pill{background:#e7f6ee;color:#17744d;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:bold}
+.empty{text-align:center;padding:25px;color:#687386}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{text-align:left;padding:10px 7px;border-bottom:1px solid #edf0f4}
+.modal{position:fixed;inset:0;background:#071a2d99;display:flex;align-items:center;justify-content:center;padding:16px}
+.modalbox{background:white;border-radius:16px;padding:20px;width:100%;max-width:500px;max-height:90vh;overflow:auto}
+.checks{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.check{border:1px solid #d5deea;border-radius:9px;padding:8px}
+.check input{width:auto;margin:0 4px 0 0}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.row{align-items:flex-start;flex-direction:column}table{display:block;overflow-x:auto;white-space:nowrap}}
 </style>
 </head>
-
 <body>
 
 <header>
@@ -286,171 +44,388 @@ white-space:nowrap
 <div id="app" class="wrap"></div>
 
 <script>
+var KEY="amitavaHubV3";
 
-const DEFAULT={
-
+var db={
 students:[
-{
-id:"STU1001",
-name:"Rahul",
-className:"VIII",
-pass:"1234",
-active:true
-},
-{
-id:"STU1002",
-name:"Ananya",
-className:"X",
-pass:"1234",
-active:true
-}
+{id:"STU1001",name:"Rahul",className:"VIII",password:"1234",active:true},
+{id:"STU1002",name:"Ananya",className:"X",password:"1234",active:true}
 ],
-
 content:[
-{
-id:1,
-title:"Preposition",
-type:"Notes",
-classes:["VIII"],
-url:"",
-desc:"Teacher notes",
-open:true
-},
-{
-id:2,
-title:"Preposition Video",
-type:"Video",
-classes:["VIII"],
-url:"",
-desc:"Short explanation",
-open:true
-},
-{
-id:3,
-title:"The Ball Poem",
-type:"Notes",
-classes:["X"],
-url:"",
-desc:"Poem notes and important points",
-open:true
-}
-
+{id:1,title:"Preposition Notes",type:"Notes",classes:["VIII"],url:"",open:true},
+{id:2,title:"Preposition Video",type:"Video",classes:["VIII"],url:"",open:true},
+{id:3,title:"The Ball Poem Notes",type:"Notes",classes:["X"],url:"",open:true}
 ]
 };
 
-let db;
-let current=null;
-let tab="home";
-
-
-function load(){
-
-try{
-
-db=JSON.parse(
-localStorage.getItem("amitavaHubV2")
-)||structuredClone(DEFAULT);
-
-}catch(e){
-
-db=structuredClone(DEFAULT);
-
-}
-
-}
-
+var current=null;
+var page="home";
 
 function save(){
-
-localStorage.setItem(
-"amitavaHubV2",
-JSON.stringify(db)
-);
-
+try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}
 }
 
-
-function esc(s){
-
-return String(s??"").replace(
-/[&<>"']/g,
-m=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[m])
-);
-
+function load(){
+try{
+var x=localStorage.getItem(KEY);
+if(x)db=JSON.parse(x);
+}catch(e){}
 }
 
-
-function loginPage(){
-
-app.innerHTML=`
-
-<div class="card login">
-
-<h1>Welcome 👋</h1>
-
-<p class="muted">
-Amitava Sir's English Learning Hub
-</p>
-
-<label>Login as</label>
-
-<select id="role">
-
-<option value="student">
-Student
-</option>
-
-<option value="admin">
-Admin
-</option>
-
-</select>
-
-<label>ID / Username</label>
-
-<input
-id="uid"
-placeholder="Student ID or admin"
->
-
-<label>Password</label>
-
-<input
-id="pw"
-type="password"
-placeholder="Password"
->
-
-<button onclick="login()">
-Login
-</button>
-
-<p class="muted small"
-style="margin-top:18px">
-
-Demo student:
-STU1001 / 1234
-
-<br>
-
-Admin:
-admin / admin123
-
-</p>
-
-</div>
-
-`;
-
+function e(s){
+return String(s||"").replace(/[&<>"']/g,function(m){
+return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]
+});
 }
 
+function loginScreen(){
+document.getElementById("app").innerHTML=
+'<div class="card login">'+
+'<h1>Welcome 👋</h1>'+
+'<p class="muted">Amitava Sir English Learning Hub</p>'+
+'<label>Login as</label>'+
+'<select id="role"><option value="student">Student</option><option value="admin">Admin</option></select>'+
+'<label>ID / Username</label>'+
+'<input id="uid" placeholder="Student ID or admin">'+
+'<label>Password</label>'+
+'<input id="pw" type="password" placeholder="Password">'+
+'<button onclick="login()">Login</button>'+
+'<p class="muted" style="font-size:12px;margin-top:18px">Student: STU1001 / 1234<br>Admin: admin / admin123</p>'+
+'</div>';
+}
 
 function login(){
+var r=document.getElementById("role").value;
+var id=document.getElementById("uid").value.trim();
+var pass=document.getElementById("pw").value;
 
-const r=
+if(r==="admin"&&id==="admin"&&pass==="admin123"){
+current={role:"admin",name:"Amitava Sir"};
+page="home";
+render();
+return;
+}
+
+if(r==="student"){
+for(var i=0;i<db.students.length;i++){
+var s=db.students[i];
+if(s.id.toLowerCase()===id.toLowerCase()&&s.password===pass&&s.active){
+current={role:"student",name:s.name,id:s.id,className:s.className};
+page="home";
+render();
+return;
+}
+}
+}
+
+alert("Invalid login or blocked student.");
+}
+
+function menu(a){
+var h='<div class="nav">';
+for(var i=0;i<a.length;i++){
+h+='<button class="'+(page===a[i][0]?"active":"")+'" onclick="page=\''+a[i][0]+'\';render()">'+a[i][1]+'</button>';
+}
+h+='<button class="gray" onclick="current=null;loginScreen()">Logout</button></div>';
+return h;
+}
+
+function render(){
+if(!current){loginScreen();return}
+if(current.role==="admin")adminPage();
+else studentPage();
+}
+
+function studentPage(){
+var visible=[];
+for(var i=0;i<db.content.length;i++){
+var x=db.content[i];
+if(x.open&&x.classes.indexOf(current.className)>=0)visible.push(x);
+}
+
+var body="";
+
+if(page==="home"){
+body='<div class="grid">'+
+'<div class="card"><div class="muted">Notes</div><div class="stat">'+count(visible,"Notes")+'</div></div>'+
+'<div class="card"><div class="muted">Videos</div><div class="stat">'+count(visible,"Video")+'</div></div>'+
+'<div class="card"><div class="muted">Tests</div><div class="stat">'+count(visible,"Test")+'</div></div>'+
+'</div><div class="card"><h2>Open for Class '+e(current.className)+'</h2>'+items(visible)+'</div>';
+}else{
+var type=page==="notes"?"Notes":page==="videos"?"Video":"Test";
+var arr=[];
+for(var j=0;j<visible.length;j++)if(visible[j].type===type)arr.push(visible[j]);
+body='<div class="card"><h2>'+type+'</h2>'+items(arr)+'</div>';
+}
+
+document.getElementById("app").innerHTML=
+'<h1>Welcome, '+e(current.name)+' 👋</h1>'+
+'<p class="muted">Class '+e(current.className)+'</p>'+
+menu([["home","🏠 Home"],["notes","📚 Notes"],["videos","🎥 Videos"],["tests","📝 Tests"]])+
+body;
+}
+
+function count(a,type){
+var n=0;
+for(var i=0;i<a.length;i++)if(a[i].type===type)n++;
+return n;
+}
+
+function items(a){
+if(!a.length)return'<div class="empty">Nothing is open for your class yet.</div>';
+var h="";
+for(var i=0;i<a.length;i++){
+var x=a[i];
+h+='<div class="row">'+
+'<div><b>'+e(x.title)+'</b><div class="muted">'+e(x.type)+'</div></div>'+
+'<span class="pill">'+e(x.type)+'</span>'+
+'<button onclick="openItem('+x.id+')">'+(x.type==="Video"?"▶ Watch":x.type==="Notes"?"📖 Open":"📝 Test")+'</button>'+
+'</div>';
+}
+return h;
+}
+
+function openItem(id){
+var x=find(id);
+if(!x)return;
+
+if(x.type==="Test"){
+alert("Test section will be added next.");
+return;
+}
+
+if(!x.url){
+alert("Your teacher has not added the link yet.");
+return;
+}
+
+window.open(x.url,"_blank");
+}
+
+function adminPage(){
+var body="";
+
+if(page==="home"){
+body='<div class="grid">'+
+'<div class="card"><div class="muted">Students</div><div class="stat">'+db.students.length+'</div></div>'+
+'<div class="card"><div class="muted">Content</div><div class="stat">'+db.content.length+'</div></div>'+
+'<div class="card"><div class="muted">Published</div><div class="stat">'+published()+'</div></div>'+
+'</div>'+
+'<div class="card"><h2>⚡ Quick Control</h2>'+
+'<p class="muted">Add Notes/PDF or YouTube links, select the classes, then Publish.</p>'+
+'<button onclick="contentForm()">+ Add Content</button></div>';
+}
+
+else if(page==="content")body=contentAdmin();
+else body=studentsAdmin();
+
+document.getElementById("app").innerHTML=
+'<h1>Admin Panel</h1>'+
+'<p class="muted">Amitava Sir • Complete control</p>'+
+menu([["home","📊 Dashboard"],["content","📚 Content"],["students","👨‍🎓 Students"]])+
+body;
+}
+
+function published(){
+var n=0;
+for(var i=0;i<db.content.length;i++)if(db.content[i].open)n++;
+return n;
+}
+
+function contentAdmin(){
+var h='<div class="card"><h2>📚 Content Library</h2>'+
+'<p class="muted">Students see only content you publish for their class.</p>'+
+'<button onclick="contentForm()">+ Add Content</button>';
+
+if(!db.content.length)return h+'<div class="empty">No content yet.</div></div>';
+
+h+='<table><tr><th>Title</th><th>Class</th><th>Type</th><th>Access</th><th>Actions</th></tr>';
+
+for(var i=0;i<db.content.length;i++){
+var x=db.content[i];
+h+='<tr><td><b>'+e(x.title)+'</b></td>'+
+'<td>'+x.classes.join(", ")+'</td>'+
+'<td>'+e(x.type)+'</td>'+
+'<td>'+(x.open?"🟢 OPEN":"🔒 HIDDEN")+'</td>'+
+'<td><button onclick="toggle('+x.id+')">'+(x.open?"Hide":"Publish")+'</button> '+
+'<button class="gray" onclick="contentForm('+x.id+')">Edit</button> '+
+'<button class="red" onclick="remove('+x.id+')">Delete</button></td></tr>';
+}
+
+return h+'</table></div>';
+}
+
+function contentForm(id){
+var x=id?find(id):null;
+var cls=["VI","VII","VIII","IX","X","XI","XII"];
+
+var h='<div class="modal" id="modal"><div class="modalbox">'+
+'<h2>'+(x?"Edit Content":"Add Content")+'</h2>'+
+'<label>Title</label>'+
+'<input id="title" value="'+e(x?x.title:"")+'" placeholder="e.g. Tense Part 1">'+
+'<label>Type</label>'+
+'<select id="type">'+
+'<option '+(x&&x.type==="Notes"?"selected":"")+'>Notes</option>'+
+'<option '+(x&&x.type==="Video"?"selected":"")+'>Video</option>'+
+'<option '+(x&&x.type==="Test"?"selected":"")+'>Test</option>'+
+'</select>'+
+'<label>Classes</label><div class="checks">';
+
+for(var i=0;i<cls.length;i++){
+h+='<label class="check"><input type="checkbox" class="cb" value="'+cls[i]+'" '+(x&&x.classes.indexOf(cls[i])>=0?"checked":"")+'>'+cls[i]+'</label>';
+}
+
+h+='</div><label>Link</label>'+
+'<input id="url" value="'+e(x?x.url:"")+'" placeholder="YouTube / PDF / Google Drive link">'+
+'<label>Description</label>'+
+'<textarea id="desc" rows="3" placeholder="Short description">'+e(x?x.desc||"":"")+'</textarea>'+
+'<p class="muted" style="font-size:12px">For Video paste YouTube link. For Notes paste PDF/Drive link.</p>'+
+'<button onclick="saveContent('+(id||0)+')">Save</button> '+
+'<button class="gray" onclick="closeModal()">Cancel</button>'+
+'</div></div>';
+
+document.body.insertAdjacentHTML("beforeend",h);
+}
+
+function saveContent(id){
+var title=document.getElementById("title").value.trim();
+var type=document.getElementById("type").value;
+var url=document.getElementById("url").value.trim();
+var desc=document.getElementById("desc").value.trim();
+var boxes=document.getElementsByClassName("cb");
+var classes=[];
+
+for(var i=0;i<boxes.length;i++)if(boxes[i].checked)classes.push(boxes[i].value);
+
+if(!title||!classes.length){
+alert("Title and at least one class are required.");
+return;
+}
+
+if(id){
+var x=find(id);
+x.title=title;
+x.type=type;
+x.url=url;
+x.desc=desc;
+x.classes=classes;
+}else{
+db.content.push({
+id:new Date().getTime(),
+title:title,
+type:type,
+url:url,
+desc:desc,
+classes:classes,
+open:false
+});
+}
+
+save();
+closeModal();
+render();
+}
+
+function find(id){
+for(var i=0;i<db.content.length;i++)if(db.content[i].id===id)return db.content[i];
+return null;
+}
+
+function toggle(id){
+var x=find(id);
+if(x)x.open=!x.open;
+save();
+render();
+}
+
+function remove(id){
+if(confirm("Delete this content?")){
+var a=[];
+for(var i=0;i<db.content.length;i++)if(db.content[i].id!==id)a.push(db.content[i]);
+db.content=a;
+save();
+render();
+}
+}
+
+function studentsAdmin(){
+var h='<div class="card"><h2>👨‍🎓 Students</h2>'+
+'<p class="muted">Create and control student accounts.</p>'+
+'<button onclick="studentForm()">+ Add Student</button>'+
+'<table><tr><th>Name</th><th>ID</th><th>Class</th><th>Status</th><th>Action</th></tr>';
+
+for(var i=0;i<db.students.length;i++){
+var s=db.students[i];
+h+='<tr><td>'+e(s.name)+'</td>'+
+'<td>'+e(s.id)+'</td>'+
+'<td>'+e(s.className)+'</td>'+
+'<td>'+(s.active?"🟢 Active":"🔒 Blocked")+'</td>'+
+'<td><button onclick="studentToggle(\''+e(s.id)+'\')">'+(s.active?"Block":"Activate")+'</button></td></tr>';
+}
+
+return h+'</table></div>';
+}
+
+function studentForm(){
+document.body.insertAdjacentHTML("beforeend",
+'<div class="modal" id="modal"><div class="modalbox">'+
+'<h2>Add Student</h2>'+
+'<label>Name</label><input id="sname" placeholder="Student name">'+
+'<label>Student ID</label><input id="sid" placeholder="STU1003">'+
+'<label>Class</label>'+
+'<select id="sclass"><option>VI</option><option>VII</option><option>VIII</option><option>IX</option><option>X</option><option>XI</option><option>XII</option></select>'+
+'<label>Password</label><input id="spass" value="1234">'+
+'<button onclick="saveStudent()">Create Student</button> '+
+'<button class="gray" onclick="closeModal()">Cancel</button>'+
+'</div></div>');
+}
+
+function saveStudent(){
+var name=document.getElementById("sname").value.trim();
+var id=document.getElementById("sid").value.trim().toUpperCase();
+var cl=document.getElementById("sclass").value;
+var pass=document.getElementById("spass").value;
+
+if(!name||!id||!pass){
+alert("Please fill all fields.");
+return;
+}
+
+for(var i=0;i<db.students.length;i++){
+if(db.students[i].id===id){
+alert("Student ID already exists.");
+return;
+}
+}
+
+db.students.push({
+id:id,
+name:name,
+className:cl,
+password:pass,
+active:true
+});
+
+save();
+closeModal();
+render();
+}
+
+function studentToggle(id){
+for(var i=0;i<db.students.length;i++){
+if(db.students[i].id===id)db.students[i].active=!db.students[i].active;
+}
+save();
+render();
+}
+
+function closeModal(){
+var m=document.getElementById("modal");
+if(m)m.remove();
+}
+
+load();
+render();
+</script>
+</body>
+</html>
