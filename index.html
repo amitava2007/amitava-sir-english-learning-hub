@@ -1,45 +1,456 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Amitava Sir's English Learning Hub</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Amitava Sir English Learning Hub</title>
+
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}header{background:#123b68;color:white;padding:22px 6%}.brand{font-size:24px;font-weight:bold}.sub{opacity:.85;font-size:13px}.wrap{max-width:1050px;margin:25px auto;padding:0 18px}.card{background:white;border:1px solid #e4e8ee;border-radius:16px;padding:20px;margin:14px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.nav button,button{padding:10px 14px;border:0;border-radius:9px;background:#2870df;color:white;font-weight:bold;cursor:pointer}.nav button{background:white;color:#123b68;border:1px solid #dce3ec}.nav .on{background:#123b68;color:white}.muted{color:#6b7582}.pill{padding:5px 9px;border-radius:20px;font-size:11px;font-weight:bold;background:#e7f7ef;color:#17744d}.lesson{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:13px 0;border-bottom:1px solid #edf0f4}.login{max-width:400px;margin:50px auto}.login input,.login select{width:100%;padding:12px;margin:7px 0 14px;border:1px solid #d7dee8;border-radius:9px;box-sizing:border-box}.stat{font-size:28px;font-weight:bold}.notice{padding:12px;background:#eef5ff;border-radius:10px}.hidden{display:none}@media(max-width:700px){.grid{grid-template-columns:1fr}}
-</style></head>
+:root{
+--navy:#123b68;
+--blue:#2870df;
+--bg:#f4f7fb;
+--card:#fff;
+--text:#172033;
+--muted:#687386;
+--line:#e4e9f0;
+--green:#16805a;
+--red:#c43d3d
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:var(--bg);
+color:var(--text)
+}
+
+header{
+background:linear-gradient(135deg,#0d3158,#2870df);
+color:#fff;
+padding:24px 6%;
+box-shadow:0 3px 16px #123b6822
+}
+
+.brand{
+font-size:23px;
+font-weight:800
+}
+
+.sub{
+margin-top:5px;
+opacity:.88;
+font-size:13px
+}
+
+.wrap{
+max-width:1100px;
+margin:24px auto;
+padding:0 16px
+}
+
+.card{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:18px;
+padding:20px;
+margin:15px 0;
+box-shadow:0 5px 20px #17365d0a
+}
+
+.login{
+max-width:430px;
+margin:55px auto
+}
+
+.login h1{
+margin-top:0
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+border:1px solid #d6deea;
+border-radius:10px;
+margin:6px 0 13px;
+font:inherit;
+background:#fff
+}
+
+button{
+border:0;
+border-radius:10px;
+padding:10px 14px;
+background:var(--blue);
+color:#fff;
+font-weight:700;
+cursor:pointer
+}
+
+button.secondary{
+background:#fff;
+color:var(--navy);
+border:1px solid #d7e0eb
+}
+
+button.danger{
+background:var(--red)
+}
+
+.nav{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin:18px 0
+}
+
+.nav button{
+background:#fff;
+color:var(--navy);
+border:1px solid #dbe3ed
+}
+
+.nav button.on{
+background:var(--navy);
+color:#fff
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px
+}
+
+.stat{
+font-size:30px;
+font-weight:800
+}
+
+.muted{
+color:var(--muted)
+}
+
+.notice{
+padding:13px;
+border-radius:12px;
+background:#eef5ff
+}
+
+.pill{
+display:inline-block;
+padding:5px 9px;
+border-radius:20px;
+font-size:11px;
+font-weight:800;
+background:#e8f7ef;
+color:var(--green)
+}
+
+.lesson{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+padding:15px 0;
+border-bottom:1px solid #edf0f4
+}
+
+.lesson:last-child{
+border-bottom:0
+}
+
+.lesson-info{
+flex:1
+}
+
+.lesson-title{
+font-weight:800;
+margin-bottom:5px
+}
+
+.actions{
+display:flex;
+gap:7px;
+flex-wrap:wrap
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px
+}
+
+th,td{
+text-align:left;
+padding:11px 8px;
+border-bottom:1px solid #edf0f4;
+font-size:14px
+}
+
+.empty{
+padding:28px;
+text-align:center;
+color:var(--muted)
+}
+
+.small{
+font-size:12px
+}
+
+.class-chip{
+display:inline-block;
+padding:6px 10px;
+border-radius:10px;
+background:#eef3fa;
+margin:3px;
+font-size:12px;
+font-weight:700
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:#071a2d88;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:16px;
+z-index:10
+}
+
+.modal-box{
+background:#fff;
+border-radius:18px;
+padding:22px;
+max-width:520px;
+width:100%;
+max-height:90vh;
+overflow:auto
+}
+
+.checks{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin:7px 0 14px
+}
+
+.check{
+border:1px solid #d7e0eb;
+border-radius:10px;
+padding:8px 10px;
+background:#fff
+}
+
+.check input{
+width:auto;
+margin:0 5px 0 0
+}
+
+@media(max-width:720px){
+.grid{
+grid-template-columns:1fr
+}
+
+.lesson{
+align-items:flex-start;
+flex-direction:column
+}
+
+.actions{
+width:100%
+}
+
+.actions button{
+flex:1
+}
+
+table{
+display:block;
+overflow-x:auto;
+white-space:nowrap
+}
+}
+</style>
+</head>
+
 <body>
-<header><div class="brand">MUKHERJEE ENGLISH TUTORIAL</div><div class="sub">KONNAGAR, HOOGHLY • Amitava Sir</div></header>
+
+<header>
+<div class="brand">MUKHERJEE ENGLISH TUTORIAL</div>
+<div class="sub">KONNAGAR, HOOGHLY • Amitava Sir</div>
+</header>
+
 <div id="app" class="wrap"></div>
+
 <script>
-const data={students:[
-{id:"STU1001",name:"Rahul",class:"VIII",pass:"1234",active:true},
-{id:"STU1002",name:"Ananya",class:"X",pass:"1234",active:true}],
-guardians:[{id:"GRD1001",name:"Rahul's Guardian",student:"STU1001",pass:"1234"}],
+
+const DEFAULT={
+
+students:[
+{
+id:"STU1001",
+name:"Rahul",
+className:"VIII",
+pass:"1234",
+active:true
+},
+{
+id:"STU1002",
+name:"Ananya",
+className:"X",
+pass:"1234",
+active:true
+}
+],
+
 content:[
-{id:1,class:"VIII",type:"Notes",title:"Preposition",desc:"Short teacher-made notes",open:true},
-{id:2,class:"VIII",type:"Video",title:"Preposition Video",desc:"Short explanation",open:true},
-{id:3,class:"VIII",type:"Test",title:"Preposition Test",desc:"10 questions • automatic marking",open:true},
-{id:4,class:"X",type:"Notes",title:"The Ball Poem",desc:"Poem notes and important Q&A",open:true},
-{id:5,class:"X",type:"Video",title:"Poem Explanation",desc:"Short explanation",open:true},
-{id:6,class:"X",type:"Test",title:"Poem Test",desc:"Quick practice",open:false}],
-payments:[]};
-let current=null,tab="home";
-function save(){localStorage.setItem("amitavaHub",JSON.stringify(data))}
-function load(){try{let x=JSON.parse(localStorage.getItem("amitavaHub"));if(x)Object.assign(data,x)}catch(e){}}
-function loginPage(){app.innerHTML=`<div class="card login"><h1>Welcome 👋</h1><p class="muted">Amitava Sir's English Learning Hub</p><select id="role"><option value="student">Student</option><option value="guardian">Guardian</option><option value="admin">Admin</option></select><input id="uid" placeholder="ID / Username"><input id="pw" type="password" placeholder="Password"><button onclick="login()">Login</button><p class="muted" style="font-size:12px;margin-top:18px">Demo: Student STU1001/1234 • Guardian GRD1001/1234 • Admin admin/admin123</p></div>`}
-function login(){let r=role.value,u=uid.value,p=pw.value;if(r==="admin"&&u==="admin"&&p==="admin123"){current={role:"admin",name:"Amitava Sir"};render();return}if(r==="student"){let s=data.students.find(x=>x.id===u&&x.pass===p&&x.active);if(s){current={role:"student",...s};render();return}}if(r==="guardian"){let g=data.guardians.find(x=>x.id===u&&x.pass===p);if(g){current={role:"guardian",...g};render();return}}alert("Invalid login or inactive account.")}
-function nav(items){return `<div class="nav">${items.map(x=>`<button class="${tab===x[0]?'on':''}" onclick="tab='${x[0]}';render()">${x[1]}</button>`).join("")}<button onclick="current=null;loginPage()">Logout</button></div>`}
-function render(){if(!current)return loginPage();if(current.role==="student")student();else if(current.role==="guardian")guardian();else admin()}
-function student(){let c=data.content.filter(x=>x.class===current.class&&x.open);app.innerHTML=`<h1>Welcome, ${current.name} 👋</h1><p class="muted">Class ${current.class}</p>${nav([["home","🏠 Home"],["notes","📚 Notes"],["videos","🎥 Videos"],["tests","📝 Tests"]])}`+(tab==="home"?`<div class="grid"><div class="card"><h3>📚 Notes</h3><div class="stat">${c.filter(x=>x.type==="Notes").length}</div><p class="muted">Available to you</p></div><div class="card"><h3>🎥 Videos</h3><div class="stat">${c.filter(x=>x.type==="Video").length}</div><p class="muted">Teacher-approved</p></div><div class="card"><h3>📝 Tests</h3><p class="muted">Optional short practice tests</p></div></div><div class="card"><h2>What Amitava Sir has opened</h2>${c.map(item).join("")}</div>`:list(c,tab==="notes"?"Notes":tab==="videos"?"Video":"Test"))}
-function item(x){return `<div class="lesson"><div><b>${x.title}</b><div class="muted">${x.desc}</div></div><span class="pill">${x.type}</span><button onclick="openItem(${x.id})">${x.type==="Notes"?"Read":x.type==="Video"?"Watch":"Take Test"}</button></div>`}
-function list(c,type){return `<div class="card"><h2>${type==="Test"?"📝 Tests":type==="Video"?"🎥 Videos":"📚 Notes"}</h2>${c.filter(x=>x.type===type).map(item).join("")||"<p class='muted'>Nothing opened yet.</p>"}</div>`}
-function openItem(id){let x=data.content.find(y=>y.id===id);if(x.type==="Test")alert("Demo result: 8/10\nCorrect answers: 8\nThe real version will calculate marks automatically.");else if(x.type==="Video")alert("Video viewer demo. Download will appear only when Amitava Sir allows it.");else alert("Notes/PDF viewer demo.")}
-function guardian(){let s=data.students.find(x=>x.id===current.student),p=data.payments.filter(x=>x.student===s.id);app.innerHTML=`<h1>${current.name}</h1><p class="muted">Guardian • Student: ${s.name} • Class ${s.class}</p>${nav([["home","📊 Progress"],["payment","💳 Payment"]])}`+(tab==="home"?`<div class="grid"><div class="card"><p class="muted">Attendance</p><div class="stat">23/25</div></div><div class="card"><p class="muted">Latest Test</p><div class="stat">8/10</div></div><div class="card"><p class="muted">Payment</p><div class="stat">${p.some(x=>x.status==="Verified")?"Paid":"Pending"}</div></div></div>`:`<div class="card"><h2>💳 Payment</h2><div class="notice">Pay through your own UPI app. This app only collects your payment proof.</div><p><b>UPI ID:</b> YOUR-UPI-ID@upi</p><input id="amt" type="number" placeholder="Amount paid"><input id="date" type="date"><input id="utr" placeholder="UTR / Transaction ID (optional)"><input id="shot" type="file" accept="image/*"><button onclick="pay()">Submit Payment Proof</button><h3>Previous submissions</h3>${p.map(x=>`<div class="lesson"><span>₹${x.amount} • ${x.date}</span><span class="pill">${x.status}</span></div>`).join("")||"<p class='muted'>None</p>"}</div>`)}
-function pay(){if(!amt.value||!date.value||!shot.files[0])return alert("Amount, date and screenshot are required.");data.payments.push({student:current.student,amount:amt.value,date:date.value,utr:utr.value,status:"Pending Verification",file:shot.files[0].name});save();alert("Payment proof submitted.");render()}
-function admin(){app.innerHTML=`<h1>Admin Panel — Amitava Sir</h1><p class="muted">You control what students can see.</p>${nav([["home","📊 Dashboard"],["content","📚 Content"],["students","👨‍🎓 Students"],["payments","💳 Payments"]])}`+(tab==="home"?`<div class="grid"><div class="card"><p class="muted">Students</p><div class="stat">${data.students.length}</div></div><div class="card"><p class="muted">Library Items</p><div class="stat">${data.content.length}</div></div><div class="card"><p class="muted">Payment Proofs</p><div class="stat">${data.payments.filter(x=>x.status!=="Verified").length}</div></div></div>`:tab==="content"?contentAdmin():tab==="students"?studentAdmin():paymentAdmin())}
-function contentAdmin(){return `<div class="card"><h2>📚 Content Library</h2><p class="muted">Add notes, videos and tests. Publish only when you want students to see them.</p><button onclick="addContent()">+ Add Content</button><table style="margin-top:18px"><tr><th>Title</th><th>Class</th><th>Type</th><th>Access</th><th></th></tr>${data.content.map(x=>`<tr><td>${x.title}</td><td>${x.class}</td><td>${x.type}</td><td>${x.open?"🟢 Open":"🔒 Hidden"}</td><td><button onclick="toggle(${x.id})">${x.open?"Hide":"Publish"}</button></td></tr>`).join("")}</table></div>`}
-function addContent(){let title=prompt("Title");if(!title)return;let cls=prompt("Class (VI, VII, VIII, IX, X, XI, XII)","VIII");if(!cls)return;let type=prompt("Type: Notes / Video / Test","Notes");if(!["Notes","Video","Test"].includes(type))return alert("Invalid type.");data.content.push({id:Date.now(),class:cls,type,title,desc:"Teacher-added content",open:false});save();render()}
-function toggle(id){let x=data.content.find(y=>y.id===id);x.open=!x.open;save();render()}
-function studentAdmin(){return `<div class="card"><h2>👨‍🎓 Students</h2><table><tr><th>Name</th><th>ID</th><th>Class</th><th>Status</th><th></th></tr>${data.students.map(s=>`<tr><td>${s.name}</td><td>${s.id}</td><td>${s.class}</td><td>${s.active?"🟢 Active":"🔒 Blocked"}</td><td><button onclick="block('${s.id}')">${s.active?"Block":"Activate"}</button></td></tr>`).join("")}</table></div>`}
-function block(id){let s=data.students.find(x=>x.id===id);s.active=!s.active;save();render()}
-function paymentAdmin(){return `<div class="card"><h2>💳 Payment Verification</h2><p class="muted">Guardians pay outside the app and upload proof.</p><table><tr><th>Student</th><th>Amount</th><th>Date</th><th>UTR</th><th>Status</th><th></th></tr>${data.payments.map((p,i)=>`<tr><td>${(data.students.find(s=>s.id===p.student)||{}).name||p.student}</td><td>₹${p.amount}</td><td>${p.date}</td><td>${p.utr||"-"}</td><td>${p.status}</td><td>${p.status!=="Verified"?`<button onclick="verify(${i})">Verify</button>`:"✓"}</td></tr>`).join("")||"<tr><td colspan=6>No submissions yet.</td></tr>"}</table></div>`}
-function verify(i){data.payments[i].status="Verified";save();render()}
-load();render();
-</script></body></html>
+{
+id:1,
+title:"Preposition",
+type:"Notes",
+classes:["VIII"],
+url:"",
+desc:"Teacher notes",
+open:true
+},
+{
+id:2,
+title:"Preposition Video",
+type:"Video",
+classes:["VIII"],
+url:"",
+desc:"Short explanation",
+open:true
+},
+{
+id:3,
+title:"The Ball Poem",
+type:"Notes",
+classes:["X"],
+url:"",
+desc:"Poem notes and important points",
+open:true
+}
+
+]
+};
+
+let db;
+let current=null;
+let tab="home";
+
+
+function load(){
+
+try{
+
+db=JSON.parse(
+localStorage.getItem("amitavaHubV2")
+)||structuredClone(DEFAULT);
+
+}catch(e){
+
+db=structuredClone(DEFAULT);
+
+}
+
+}
+
+
+function save(){
+
+localStorage.setItem(
+"amitavaHubV2",
+JSON.stringify(db)
+);
+
+}
+
+
+function esc(s){
+
+return String(s??"").replace(
+/[&<>"']/g,
+m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m])
+);
+
+}
+
+
+function loginPage(){
+
+app.innerHTML=`
+
+<div class="card login">
+
+<h1>Welcome 👋</h1>
+
+<p class="muted">
+Amitava Sir's English Learning Hub
+</p>
+
+<label>Login as</label>
+
+<select id="role">
+
+<option value="student">
+Student
+</option>
+
+<option value="admin">
+Admin
+</option>
+
+</select>
+
+<label>ID / Username</label>
+
+<input
+id="uid"
+placeholder="Student ID or admin"
+>
+
+<label>Password</label>
+
+<input
+id="pw"
+type="password"
+placeholder="Password"
+>
+
+<button onclick="login()">
+Login
+</button>
+
+<p class="muted small"
+style="margin-top:18px">
+
+Demo student:
+STU1001 / 1234
+
+<br>
+
+Admin:
+admin / admin123
+
+</p>
+
+</div>
+
+`;
+
+}
+
+
+function login(){
+
+const r=
