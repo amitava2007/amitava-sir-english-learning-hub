@@ -565,7 +565,7 @@ const [
 coursesResult,
 levelsResult,
 studentsResult,
-contentResult,
+contentResult,j
 testsResult,
 resultsResult
 ]=await Promise.all([
@@ -580,7 +580,7 @@ sb.from("content").select("*").order("created_at",{ascending:false}),
 
 sb.from("tests").select("*").order("created_at",{ascending:false}),
 
-sb.from("test_attempts").select("*").order("created_at",{ascending:false})
+sb.from("test_attempts").select("*")
 
 ]);
 
