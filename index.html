@@ -1,53 +1,443 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MUKHERJEE ENGLISH TUTORIAL</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
-header{background:#172033;color:#fff;text-align:center;padding:18px}header h1{margin:0;font-size:22px}header p{margin:5px 0 0;font-size:13px}
-main{max-width:900px;margin:20px auto;padding:0 14px}.card{background:#fff;border-radius:14px;padding:18px;margin-bottom:15px;box-shadow:0 3px 14px #0001}
-input,button{width:100%;padding:11px;margin-top:8px;border-radius:9px;border:1px solid #ccd5e0;font-size:15px}button{background:#172033;color:#fff;border:0;font-weight:bold}
-.err{color:#b42318;background:#fff0f0;padding:10px;border-radius:8px;margin-top:12px}.muted{color:#667085}.item{border:1px solid #e0e6ed;border-radius:10px;padding:13px;margin-top:10px}
-.tabs{display:flex;gap:8px;margin:15px 0}.tabs button{flex:1}.on{background:#0b6bcb}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-@media(max-width:600px){.top{align-items:flex-start;flex-direction:column}.tabs{flex-direction:column}}
-</style></head>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+header{background:#172033;color:#fff;text-align:center;padding:18px}
+header h1{margin:0;font-size:22px}
+header p{margin:5px 0 0;font-size:13px}
+main{max-width:900px;margin:20px auto;padding:0 14px}
+.card{background:#fff;border-radius:14px;padding:18px;margin-bottom:15px;box-shadow:0 3px 14px #0001}
+input,button{width:100%;padding:11px;margin-top:8px;border-radius:9px;border:1px solid #ccd5e0;font-size:15px}
+button{background:#172033;color:#fff;border:0;font-weight:bold}
+.err{color:#b42318;background:#fff0f0;padding:10px;border-radius:8px;margin-top:12px}
+.muted{color:#667085}
+.item{border:1px solid #e0e6ed;border-radius:10px;padding:13px;margin-top:10px}
+.tabs{display:flex;gap:8px;margin:15px 0}
+.tabs button{flex:1}
+.on{background:#0b6bcb}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+@media(max-width:600px){
+.top{align-items:flex-start;flex-direction:column}
+.tabs{flex-direction:column}
+}
+</style>
+</head>
+
 <body>
-<header><h1>MUKHERJEE ENGLISH TUTORIAL</h1><p>KONNAGAR, HOOGHLY • Amitava Sir</p></header>
-<main id="app">Loading...</main>
+
+<header>
+<h1>MUKHERJEE ENGLISH TUTORIAL</h1>
+<p>KONNAGAR, HOOGHLY • Amitava Sir</p>
+</header>
+
+<main id="app">
+<div class="card">Loading...</div>
+</main>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-const URL="https://gsytlzquntkqdekqevkj.supabase.co";
-const KEY="sb_publishable_W0MSP0P49Wx9WOR0lHz6bA_DWtEjYXG";
-const API=URL+"/functions/v1/smart-endpoint";
-const sb=window.supabase.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
-const app=document.getElementById("app");let S=null,C=[],T=[],page="home";
-const esc=x=>String(x??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-function loginPage(){app.innerHTML=`<div class="card" style="max-width:440px;margin:40px auto"><h2>Student Login</h2><p class="muted">Use the Student ID and password given by your teacher.</p><input id="sid" placeholder="Student ID"><input id="pw" type="password" placeholder="Password"><button onclick="login()">Login</button><div id="e"></div></div>`}
+const SUPABASE_URL="https://gsytlzquntkqdekqevkj.supabase.co";
+const SUPABASE_KEY="sb_publishable_W0MSP0P49Wx9WOR0lHz6bA_DWtEjYXG";
+const API=SUPABASE_URL+"/functions/v1/smart-endpoint";
+
+const app=document.getElementById("app");
+
+let sb=null;
+let S=null;
+let C=[];
+let T=[];
+let page="home";
+
+const esc=x=>String(x??"").replace(/[&<>"']/g,m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+}[m]));
+
+function showError(message){
+app.innerHTML=
+'<div class="card"><h2>System Error</h2>'+
+'<div class="err">'+esc(message)+'</div></div>';
+}
+
+function loginPage(){
+app.innerHTML=`
+<div class="card" style="max-width:440px;margin:40px auto">
+<h2>Student Login</h2>
+<p class="muted">Use the Student ID and password given by your teacher.</p>
+<input id="sid" placeholder="Student ID">
+<input id="pw" type="password" placeholder="Password">
+<button id="loginBtn">Login</button>
+<div id="e"></div>
+</div>`;
+
+document.getElementById("loginBtn").onclick=login;
+}
+
 async function login(){
- let sid=document.getElementById("sid").value.trim(),pw=document.getElementById("pw").value,e=document.getElementById("e");e.innerHTML="";
- try{let r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","apikey":KEY},body:JSON.stringify({action:"login",student_id:sid,password:pw})});let j=await r.json();if(!r.ok||!j.ok)throw Error(j.error||"Login failed");await sb.auth.setSession({access_token:j.access_token,refresh_token:j.refresh_token});S=j.student;await load();}catch(x){e.innerHTML='<div class="err">'+esc(x.message)+'</div>'}
+
+const sid=document.getElementById("sid").value.trim();
+const pw=document.getElementById("pw").value;
+const e=document.getElementById("e");
+
+e.innerHTML="";
+
+if(!sid||!pw){
+e.innerHTML='<div class="err">Student ID and password are required.</div>';
+return;
 }
+
+try{
+
+const r=await fetch(API,{
+method:"POST",
+headers:{
+"Content-Type":"application/json",
+"apikey":SUPABASE_KEY
+},
+body:JSON.stringify({
+action:"login",
+student_id:sid,
+password:pw
+})
+});
+
+const j=await r.json();
+
+if(!r.ok||!j.ok){
+throw Error(j.error||"Login failed");
+}
+
+await sb.auth.setSession({
+access_token:j.access_token,
+refresh_token:j.refresh_token
+});
+
+S=j.student;
+
+await load();
+
+}catch(x){
+
+e.innerHTML='<div class="err">'+esc(x.message)+'</div>';
+
+}
+}
+
 async function call(action,data={}){
- let {data:s}=await sb.auth.getSession();if(!s.session)throw Error("Session expired. Please log in again.");
- let r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","apikey":KEY,"Authorization":"Bearer "+s.session.access_token},body:JSON.stringify({action,...data})});let j=await r.json();if(!r.ok||!j.ok)throw Error(j.error||"Request failed");return j;
+
+const {data:s}=await sb.auth.getSession();
+
+if(!s.session){
+throw Error("Session expired. Please log in again.");
 }
-async function load(){try{let j=await call("dashboard");S=j.student;C=j.content||[];T=j.tests||[];render()}catch(x){await sb.auth.signOut();loginPage()}}
+
+const r=await fetch(API,{
+method:"POST",
+headers:{
+"Content-Type":"application/json",
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+s.session.access_token
+},
+body:JSON.stringify({
+action,
+...data
+})
+});
+
+const j=await r.json();
+
+if(!r.ok||!j.ok){
+throw Error(j.error||"Request failed");
+}
+
+return j;
+}
+
+async function load(){
+
+try{
+
+const j=await call("dashboard");
+
+S=j.student;
+C=j.content||[];
+T=j.tests||[];
+
+render();
+
+}catch(x){
+
+await sb.auth.signOut();
+loginPage();
+
+}
+}
+
 function render(){
- let nav=`<div class="card"><div class="top"><div><b>${esc(S.full_name)}</b><div class="muted">${esc(S.course_name)} • ${esc(S.level_name)}</div></div><button style="width:auto" onclick="logout()">Logout</button></div><div class="tabs"><button class="${page==="home"?"on":""}" onclick="page='home';render()">Home</button><button class="${page==="content"?"on":""}" onclick="page='content';render()">Lessons</button><button class="${page==="tests"?"on":""}" onclick="page='tests';render()">Tests</button></div></div>`;
- let body="";
- if(page==="home")body=`<div class="card"><h2>Welcome, ${esc(S.full_name)}</h2><p>Your class-specific learning material is ready here.</p><p class="muted">Lessons: ${C.length} • Tests: ${T.length}</p></div>`;
- if(page==="content")body=`<div class="card"><h2>Lessons</h2>${C.length?C.map(x=>`<div class="item"><b>${esc(x.title)}</b><div class="muted">${esc(x.type)}</div><p>${esc(x.description||"")}</p>${x.url?`<a href="${esc(x.url)}" target="_blank">Open resource</a>`:""}</div>`).join(""):"<p class='muted'>No published lessons yet.</p>"}</div>`;
- if(page==="tests")body=`<div class="card"><h2>Tests</h2>${T.length?T.map(x=>`<div class="item"><b>${esc(x.title)}</b><p class="muted">Total marks: ${esc(x.total_marks)}</p><button onclick="test('${esc(x.id)}')">Start Test</button></div>`).join(""):"<p class='muted'>No published tests yet.</p>"}</div>`;
- app.innerHTML=nav+body
+
+const nav=`
+<div class="card">
+<div class="top">
+<div>
+<b>${esc(S.full_name)}</b>
+<div class="muted">${esc(S.course_name)} • ${esc(S.level_name)}</div>
+</div>
+
+<button style="width:auto" onclick="logout()">Logout</button>
+
+</div>
+
+<div class="tabs">
+
+<button class="${page==="home"?"on":""}" onclick="page='home';render()">
+Home
+</button>
+
+<button class="${page==="content"?"on":""}" onclick="page='content';render()">
+Lessons
+</button>
+
+<button class="${page==="tests"?"on":""}" onclick="page='tests';render()">
+Tests
+</button>
+
+</div>
+</div>
+`;
+
+let body="";
+
+if(page==="home"){
+
+body=`
+<div class="card">
+<h2>Welcome, ${esc(S.full_name)}</h2>
+<p>Your class-specific learning material is ready here.</p>
+<p class="muted">
+Lessons: ${C.length} • Tests: ${T.length}
+</p>
+</div>`;
 }
+
+if(page==="content"){
+
+body=`
+<div class="card">
+<h2>Lessons</h2>
+
+${
+C.length
+?
+C.map(x=>`
+<div class="item">
+<b>${esc(x.title)}</b>
+<div class="muted">${esc(x.type)}</div>
+<p>${esc(x.description||"")}</p>
+
+${x.url
+?
+`<a href="${esc(x.url)}" target="_blank">Open resource</a>`
+:""}
+
+</div>
+`).join("")
+:
+"<p class='muted'>No published lessons yet.</p>"
+}
+
+</div>`;
+}
+
+if(page==="tests"){
+
+body=`
+<div class="card">
+<h2>Tests</h2>
+
+${
+T.length
+?
+T.map(x=>`
+<div class="item">
+<b>${esc(x.title)}</b>
+<p class="muted">
+Total marks: ${esc(x.total_marks)}
+</p>
+<button onclick="test('${esc(x.id)}')">
+Start Test
+</button>
+</div>
+`).join("")
+:
+"<p class='muted'>No published tests yet.</p>"
+}
+
+</div>`;
+}
+
+app.innerHTML=nav+body;
+}
+
 async function test(id){
- try{let j=await call("test",{test_id:id}),t=j.test,q=j.questions||[];app.innerHTML=`<div class="card"><h2>${esc(t.title)}</h2><p class="muted">Total marks: ${esc(t.total_marks)}</p><form id="f">${q.map((x,i)=>`<div class="item"><b>${i+1}. ${esc(x.question_text)}</b>${(x.options||[]).map(o=>`<label style="display:block;margin-top:9px"><input style="width:auto" type="radio" name="q${x.id}" value="${o.id}"> ${esc(o.option_text)}</label>`).join("")}</div>`).join("")}<button type="button" onclick="submitTest('${id}')">Submit Test</button></form></div>`}catch(x){alert(x.message)}
+
+try{
+
+const j=await call("test",{test_id:id});
+
+const t=j.test;
+const q=j.questions||[];
+
+app.innerHTML=`
+<div class="card">
+
+<h2>${esc(t.title)}</h2>
+
+<p class="muted">
+Total marks: ${esc(t.total_marks)}
+</p>
+
+<form id="f">
+
+${q.map((x,i)=>`
+
+<div class="item">
+
+<b>${i+1}. ${esc(x.question_text)}</b>
+
+${(x.options||[]).map(o=>`
+
+<label style="display:block;margin-top:9px">
+
+<input
+style="width:auto"
+type="radio"
+name="q${x.id}"
+value="${o.id}">
+
+${esc(o.option_text)}
+
+</label>
+
+`).join("")}
+
+</div>
+
+`).join("")}
+
+<button type="button" onclick="submitTest('${id}')">
+Submit Test
+</button>
+
+</form>
+
+</div>
+`;
+
+}catch(x){
+
+alert(x.message);
+
 }
+}
+
 async function submitTest(id){
- let a={};document.querySelectorAll("#f input:checked").forEach(x=>a[x.name.slice(1)]=x.value);
- try{let j=await call("submit",{test_id:id,answers:a});app.innerHTML=`<div class="card" style="text-align:center"><h2>Result</h2><h1>${esc(j.score)} / ${esc(j.total_marks)}</h1><button onclick="page='tests';render()">Back to Tests</button></div>`}catch(x){alert(x.message)}
+
+const a={};
+
+document.querySelectorAll("#f input:checked").forEach(x=>{
+a[x.name.slice(1)]=x.value;
+});
+
+try{
+
+const j=await call("submit",{
+test_id:id,
+answers:a
+});
+
+app.innerHTML=`
+<div class="card" style="text-align:center">
+
+<h2>Result</h2>
+
+<h1>
+${esc(j.score)} / ${esc(j.total_marks)}
+</h1>
+
+<button onclick="page='tests';render()">
+Back to Tests
+</button>
+
+</div>
+`;
+
+}catch(x){
+
+alert(x.message);
+
 }
-async function logout(){await sb.auth.signOut();S=null;loginPage()}
-(async()=>{let {data:s}=await sb.auth.getSession();if(s.session)load();else loginPage()})();
-</script></body></html>
+}
+
+async function logout(){
+
+await sb.auth.signOut();
+
+S=null;
+
+loginPage();
+
+}
+
+function startApp(){
+
+try{
+
+if(!window.supabase){
+throw Error("Supabase library did not load.");
+}
+
+sb=window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY,
+{
+auth:{
+persistSession:true,
+autoRefreshToken:true,
+detectSessionInUrl:false
+}
+}
+);
+
+sb.auth.getSession().then(({data})=>{
+
+if(data.session){
+load();
+}else{
+loginPage();
+}
+
+}).catch(showError);
+
+}catch(x){
+
+showError(x.message);
+
+}
+
+}
+
+window.addEventListener("load",startApp);
+</script>
+
+</body>
+</html>
