@@ -19,7 +19,7 @@ input,button{width:100%;padding:11px;margin-top:8px;border-radius:9px;border:1px
 <script>
 const URL="https://gsytlzquntkqdekqevkj.supabase.co";
 const KEY="sb_publishable_W0MSP0P49Wx9WOR0lHz6bA_DWtEjYXG";
-const API=URL+"/functions/v1/student-api";
+const API=URL+"/functions/v1/smart_endpoint";
 const sb=window.supabase.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
 const app=document.getElementById("app");let S=null,C=[],T=[],page="home";
 const esc=x=>String(x??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
