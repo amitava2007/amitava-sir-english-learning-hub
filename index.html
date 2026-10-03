@@ -11,20 +11,33 @@ body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
 header{background:#172033;color:#fff;text-align:center;padding:18px}
 header h1{margin:0;font-size:22px}
 header p{margin:5px 0 0;font-size:13px}
-main{max-width:900px;margin:20px auto;padding:0 14px}
+main{max-width:1100px;margin:20px auto;padding:0 14px}
 .card{background:#fff;border-radius:14px;padding:18px;margin-bottom:15px;box-shadow:0 3px 14px #0001}
-input,button{width:100%;padding:11px;margin-top:8px;border-radius:9px;border:1px solid #ccd5e0;font-size:15px}
-button{background:#172033;color:#fff;border:0;font-weight:bold}
+input,select,textarea,button{width:100%;padding:11px;margin-top:8px;border-radius:9px;border:1px solid #ccd5e0;font-size:15px}
+textarea{min-height:100px;resize:vertical}
+button{background:#172033;color:#fff;border:0;font-weight:bold;cursor:pointer}
+button.blue{background:#0b6bcb}
+button.red{background:#b42318}
 .err{color:#b42318;background:#fff0f0;padding:10px;border-radius:8px;margin-top:12px}
+.ok{color:#067647;background:#ecfdf3;padding:10px;border-radius:8px;margin-top:12px}
 .muted{color:#667085}
 .item{border:1px solid #e0e6ed;border-radius:10px;padding:13px;margin-top:10px}
-.tabs{display:flex;gap:8px;margin:15px 0}
-.tabs button{flex:1}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat{padding:18px;border-radius:12px;background:#f8fafc;border:1px solid #e0e6ed}
+.stat b{font-size:26px;display:block}
+.tabs{display:flex;gap:8px;margin:15px 0;flex-wrap:wrap}
+.tabs button{width:auto;flex:1;min-width:120px}
 .on{background:#0b6bcb}
 .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-@media(max-width:600px){
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hide{display:none}
+.badge{display:inline-block;padding:4px 8px;border-radius:20px;background:#eef4ff;font-size:12px}
+@media(max-width:700px){
+.grid{grid-template-columns:1fr 1fr}
+.row{grid-template-columns:1fr}
 .top{align-items:flex-start;flex-direction:column}
 .tabs{flex-direction:column}
+.tabs button{width:100%}
 }
 </style>
 </head>
@@ -43,6 +56,7 @@ button{background:#172033;color:#fff;border:0;font-weight:bold}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
 const SUPABASE_URL="https://gsytlzquntkqdekqevkj.supabase.co";
 const SUPABASE_KEY="sb_publishable_W0MSP0P49Wx9WOR0lHz6bA_DWtEjYXG";
 const API=SUPABASE_URL+"/functions/v1/smart-endpoint";
@@ -50,9 +64,11 @@ const API=SUPABASE_URL+"/functions/v1/smart-endpoint";
 const app=document.getElementById("app");
 
 let sb=null;
-let S=null;
-let C=[];
-let T=[];
+let currentUser=null;
+let student=null;
+let studentContent=[];
+let studentTests=[];
+let mode="login";
 let page="home";
 
 const esc=x=>String(x??"").replace(/[&<>"']/g,m=>({
@@ -63,36 +79,93 @@ const esc=x=>String(x??"").replace(/[&<>"']/g,m=>({
 "'":"&#39;"
 }[m]));
 
-function showError(message){
-app.innerHTML=
-'<div class="card"><h2>System Error</h2>'+
-'<div class="err">'+esc(message)+'</div></div>';
+function errorBox(x){
+return '<div class="err">'+esc(x)+'</div>';
 }
 
 function loginPage(){
-app.innerHTML=`
-<div class="card" style="max-width:440px;margin:40px auto">
-<h2>Student Login</h2>
-<p class="muted">Use the Student ID and password given by your teacher.</p>
-<input id="sid" placeholder="Student ID">
-<input id="pw" type="password" placeholder="Password">
-<button id="loginBtn">Login</button>
-<div id="e"></div>
-</div>`;
 
-document.getElementById("loginBtn").onclick=login;
+app.innerHTML=`
+
+<div class="card" style="max-width:500px;margin:40px auto">
+
+<h2>MUKHERJEE ENGLISH TUTORIAL</h2>
+
+<p class="muted">Choose your login.</p>
+
+<div class="tabs">
+<button id="studentMode" class="on">Student Login</button>
+<button id="adminMode">Admin Login</button>
+</div>
+
+<div id="loginArea"></div>
+
+</div>
+`;
+
+document.getElementById("studentMode").onclick=()=>{
+mode="student";
+document.getElementById("studentMode").className="on";
+document.getElementById("adminMode").className="";
+studentLoginForm();
+};
+
+document.getElementById("adminMode").onclick=()=>{
+mode="admin";
+document.getElementById("adminMode").className="on";
+document.getElementById("studentMode").className="";
+adminLoginForm();
+};
+
+studentLoginForm();
 }
 
-async function login(){
+function studentLoginForm(){
+
+document.getElementById("loginArea").innerHTML=`
+
+<h3>Student Login</h3>
+
+<input id="sid" placeholder="Student ID">
+
+<input id="pw" type="password" placeholder="Password">
+
+<button id="studentLoginBtn">Login</button>
+
+<div id="loginError"></div>
+`;
+
+document.getElementById("studentLoginBtn").onclick=studentLogin;
+}
+
+function adminLoginForm(){
+
+document.getElementById("loginArea").innerHTML=`
+
+<h3>Admin Login</h3>
+
+<input id="adminEmail" type="email" placeholder="Admin email">
+
+<input id="adminPassword" type="password" placeholder="Password">
+
+<button id="adminLoginBtn">Login</button>
+
+<div id="loginError"></div>
+`;
+
+document.getElementById("adminLoginBtn").onclick=adminLogin;
+}
+
+async function studentLogin(){
 
 const sid=document.getElementById("sid").value.trim();
 const pw=document.getElementById("pw").value;
-const e=document.getElementById("e");
+const box=document.getElementById("loginError");
 
-e.innerHTML="";
+box.innerHTML="";
 
 if(!sid||!pw){
-e.innerHTML='<div class="err">Student ID and password are required.</div>';
+box.innerHTML=errorBox("Student ID and password are required.");
 return;
 }
 
@@ -122,18 +195,65 @@ access_token:j.access_token,
 refresh_token:j.refresh_token
 });
 
-S=j.student;
+student=j.student;
 
-await load();
+await loadStudent();
 
 }catch(x){
 
-e.innerHTML='<div class="err">'+esc(x.message)+'</div>';
+box.innerHTML=errorBox(x.message);
 
 }
 }
 
-async function call(action,data={}){
+async function adminLogin(){
+
+const email=document.getElementById("adminEmail").value.trim();
+const password=document.getElementById("adminPassword").value;
+const box=document.getElementById("loginError");
+
+box.innerHTML="";
+
+if(!email||!password){
+box.innerHTML=errorBox("Email and password are required.");
+return;
+}
+
+try{
+
+const {data,error}=await sb.auth.signInWithPassword({
+email,
+password
+});
+
+if(error)throw error;
+
+currentUser=data.user;
+
+const {data:profile,error:profileError}=await sb
+.from("profiles")
+.select("*")
+.eq("id",currentUser.id)
+.maybeSingle();
+
+if(profileError)throw profileError;
+
+if(profile && profile.role && profile.role!=="admin"){
+await sb.auth.signOut();
+throw Error("This account is not an admin account.");
+}
+
+page="overview";
+await adminDashboard();
+
+}catch(x){
+
+box.innerHTML=errorBox(x.message);
+
+}
+}
+
+async function apiCall(action,data={}){
 
 const {data:s}=await sb.auth.getSession();
 
@@ -163,17 +283,17 @@ throw Error(j.error||"Request failed");
 return j;
 }
 
-async function load(){
+async function loadStudent(){
 
 try{
 
-const j=await call("dashboard");
+const j=await apiCall("dashboard");
 
-S=j.student;
-C=j.content||[];
-T=j.tests||[];
+student=j.student;
+studentContent=j.content||[];
+studentTests=j.tests||[];
 
-render();
+renderStudent();
 
 }catch(x){
 
@@ -183,14 +303,21 @@ loginPage();
 }
 }
 
-function render(){
+function renderStudent(){
 
 const nav=`
+
 <div class="card">
+
 <div class="top">
+
 <div>
-<b>${esc(S.full_name)}</b>
-<div class="muted">${esc(S.course_name)} • ${esc(S.level_name)}</div>
+<b>${esc(student.full_name||student.student_id||"Student")}</b>
+
+<div class="muted">
+${esc(student.course_name||"")} • ${esc(student.level_name||"")}
+</div>
+
 </div>
 
 <button style="width:auto" onclick="logout()">Logout</button>
@@ -199,19 +326,20 @@ const nav=`
 
 <div class="tabs">
 
-<button class="${page==="home"?"on":""}" onclick="page='home';render()">
+<button class="${page==="home"?"on":""}" onclick="page='home';renderStudent()">
 Home
 </button>
 
-<button class="${page==="content"?"on":""}" onclick="page='content';render()">
+<button class="${page==="content"?"on":""}" onclick="page='content';renderStudent()">
 Lessons
 </button>
 
-<button class="${page==="tests"?"on":""}" onclick="page='tests';render()">
+<button class="${page==="tests"?"on":""}" onclick="page='tests';renderStudent()">
 Tests
 </button>
 
 </div>
+
 </div>
 `;
 
@@ -220,28 +348,52 @@ let body="";
 if(page==="home"){
 
 body=`
+
 <div class="card">
-<h2>Welcome, ${esc(S.full_name)}</h2>
+
+<h2>Welcome</h2>
+
 <p>Your class-specific learning material is ready here.</p>
-<p class="muted">
-Lessons: ${C.length} • Tests: ${T.length}
-</p>
-</div>`;
+
+<div class="grid">
+
+<div class="stat">
+<b>${studentContent.length}</b>
+<span>Lessons</span>
+</div>
+
+<div class="stat">
+<b>${studentTests.length}</b>
+<span>Tests</span>
+</div>
+
+</div>
+
+</div>
+`;
 }
 
 if(page==="content"){
 
 body=`
+
 <div class="card">
+
 <h2>Lessons</h2>
 
 ${
-C.length
+studentContent.length
 ?
-C.map(x=>`
+studentContent.map(x=>`
+
 <div class="item">
+
 <b>${esc(x.title)}</b>
-<div class="muted">${esc(x.type)}</div>
+
+<div class="muted">
+${esc(x.type||"Lesson")}
+</div>
+
 <p>${esc(x.description||"")}</p>
 
 ${x.url
@@ -250,71 +402,85 @@ ${x.url
 :""}
 
 </div>
+
 `).join("")
 :
 "<p class='muted'>No published lessons yet.</p>"
 }
 
-</div>`;
+</div>
+`;
 }
 
 if(page==="tests"){
 
 body=`
+
 <div class="card">
+
 <h2>Tests</h2>
 
 ${
-T.length
+studentTests.length
 ?
-T.map(x=>`
+studentTests.map(x=>`
+
 <div class="item">
+
 <b>${esc(x.title)}</b>
+
 <p class="muted">
-Total marks: ${esc(x.total_marks)}
+Total marks: ${esc(x.total_marks||0)}
 </p>
-<button onclick="test('${esc(x.id)}')">
+
+<button onclick="openTest('${esc(x.id)}')">
 Start Test
 </button>
+
 </div>
+
 `).join("")
 :
 "<p class='muted'>No published tests yet.</p>"
 }
 
-</div>`;
+</div>
+`;
 }
 
 app.innerHTML=nav+body;
 }
 
-async function test(id){
+async function openTest(id){
 
 try{
 
-const j=await call("test",{test_id:id});
+const j=await apiCall("test",{test_id:id});
 
 const t=j.test;
 const q=j.questions||[];
 
 app.innerHTML=`
+
 <div class="card">
 
 <h2>${esc(t.title)}</h2>
 
 <p class="muted">
-Total marks: ${esc(t.total_marks)}
+Total marks: ${esc(t.total_marks||0)}
 </p>
 
-<form id="f">
+<form id="testForm">
 
-${q.map((x,i)=>`
+${
+q.map((x,i)=>`
 
 <div class="item">
 
 <b>${i+1}. ${esc(x.question_text)}</b>
 
-${(x.options||[]).map(o=>`
+${
+(x.options||[]).map(o=>`
 
 <label style="display:block;margin-top:9px">
 
@@ -328,13 +494,15 @@ ${esc(o.option_text)}
 
 </label>
 
-`).join("")}
+`).join("")
+}
 
 </div>
 
-`).join("")}
+`).join("")
+}
 
-<button type="button" onclick="submitTest('${id}')">
+<button type="button" onclick="submitTest('${esc(id)}')">
 Submit Test
 </button>
 
@@ -352,29 +520,30 @@ alert(x.message);
 
 async function submitTest(id){
 
-const a={};
+const answers={};
 
-document.querySelectorAll("#f input:checked").forEach(x=>{
-a[x.name.slice(1)]=x.value;
+document
+.querySelectorAll("#testForm input:checked")
+.forEach(x=>{
+answers[x.name.slice(1)]=x.value;
 });
 
 try{
 
-const j=await call("submit",{
+const j=await apiCall("submit",{
 test_id:id,
-answers:a
+answers
 });
 
 app.innerHTML=`
+
 <div class="card" style="text-align:center">
 
 <h2>Result</h2>
 
-<h1>
-${esc(j.score)} / ${esc(j.total_marks)}
-</h1>
+<h1>${esc(j.score)} / ${esc(j.total_marks)}</h1>
 
-<button onclick="page='tests';render()">
+<button onclick="page='tests';renderStudent()">
 Back to Tests
 </button>
 
@@ -388,14 +557,369 @@ alert(x.message);
 }
 }
 
+async function adminDashboard(){
+
+try{
+
+const [
+coursesResult,
+levelsResult,
+studentsResult,
+contentResult,
+testsResult,
+resultsResult
+]=await Promise.all([
+
+sb.from("courses").select("*").order("created_at",{ascending:false}),
+
+sb.from("levels").select("*").order("created_at",{ascending:false}),
+
+sb.from("students").select("*").order("created_at",{ascending:false}),
+
+sb.from("content").select("*").order("created_at",{ascending:false}),
+
+sb.from("tests").select("*").order("created_at",{ascending:false}),
+
+sb.from("test_attempts").select("*").order("created_at",{ascending:false})
+
+]);
+
+if(coursesResult.error)throw coursesResult.error;
+if(levelsResult.error)throw levelsResult.error;
+if(studentsResult.error)throw studentsResult.error;
+if(contentResult.error)throw contentResult.error;
+if(testsResult.error)throw testsResult.error;
+if(resultsResult.error)throw resultsResult.error;
+
+window.ADMIN_DATA={
+courses:coursesResult.data||[],
+levels:levelsResult.data||[],
+students:studentsResult.data||[],
+content:contentResult.data||[],
+tests:testsResult.data||[],
+results:resultsResult.data||[]
+};
+
+renderAdmin();
+
+}catch(x){
+
+app.innerHTML=`
+
+<div class="card">
+
+<h2>Admin Dashboard Error</h2>
+
+${errorBox(x.message)}
+
+<button onclick="logout()">Logout</button>
+
+</div>
+`;
+
+}
+}
+
+function renderAdmin(){
+
+const d=window.ADMIN_DATA;
+
+const nav=`
+
+<div class="card">
+
+<div class="top">
+
+<div>
+<b>Admin Dashboard</b>
+<div class="muted">MUKHERJEE ENGLISH TUTORIAL</div>
+</div>
+
+<button style="width:auto" onclick="logout()">Logout</button>
+
+</div>
+
+<div class="tabs">
+
+<button class="${page==="overview"?"on":""}" onclick="page='overview';renderAdmin()">
+Overview
+</button>
+
+<button class="${page==="students"?"on":""}" onclick="page='students';renderAdmin()">
+Students
+</button>
+
+<button class="${page==="courses"?"on":""}" onclick="page='courses';renderAdmin()">
+Courses & Groups
+</button>
+
+<button class="${page==="contentAdmin"?"on":""}" onclick="page='contentAdmin';renderAdmin()">
+Content
+</button>
+
+<button class="${page==="testsAdmin"?"on":""}" onclick="page='testsAdmin';renderAdmin()">
+Tests
+</button>
+
+<button class="${page==="results"?"on":""}" onclick="page='results';renderAdmin()">
+Results
+</button>
+
+</div>
+
+</div>
+`;
+
+let body="";
+
+if(page==="overview"){
+
+body=`
+
+<div class="grid">
+
+<div class="stat">
+<b>${d.courses.length}</b>
+Courses
+</div>
+
+<div class="stat">
+<b>${d.levels.length}</b>
+Groups / Levels
+</div>
+
+<div class="stat">
+<b>${d.students.length}</b>
+Students
+</div>
+
+<div class="stat">
+<b>${d.content.length}</b>
+Content
+</div>
+
+<div class="stat">
+<b>${d.tests.length}</b>
+Tests
+</div>
+
+<div class="stat">
+<b>${d.results.length}</b>
+Results
+</div>
+
+</div>
+`;
+}
+
+if(page==="students"){
+
+body=`
+
+<div class="card">
+
+<h2>Students</h2>
+
+${
+d.students.length
+?
+d.students.map(s=>`
+
+<div class="item">
+
+<b>${esc(s.full_name||s.student_id||s.student_code||"Student")}</b>
+
+<p class="muted">
+ID: ${esc(s.student_id||s.student_code||"")}
+</p>
+
+<p class="muted">
+Level ID: ${esc(s.level_id||"")}
+</p>
+
+</div>
+
+`).join("")
+:
+"<p class='muted'>No students found.</p>"
+}
+
+</div>
+`;
+}
+
+if(page==="courses"){
+
+body=`
+
+<div class="card">
+
+<h2>Courses</h2>
+
+${
+d.courses.length
+?
+d.courses.map(c=>`
+
+<div class="item">
+
+<b>${esc(c.name||c.title||"Course")}</b>
+
+<p class="muted">
+${esc(c.description||"")}
+</p>
+
+</div>
+
+`).join("")
+:
+"<p class='muted'>No courses found.</p>"
+}
+
+</div>
+
+<div class="card">
+
+<h2>Groups / Levels</h2>
+
+${
+d.levels.length
+?
+d.levels.map(l=>`
+
+<div class="item">
+
+<b>${esc(l.name||l.title||"Level")}</b>
+
+</div>
+
+`).join("")
+:
+"<p class='muted'>No levels found.</p>"
+}
+
+</div>
+`;
+}
+
+if(page==="contentAdmin"){
+
+body=`
+
+<div class="card">
+
+<h2>Content</h2>
+
+${
+d.content.length
+?
+d.content.map(c=>`
+
+<div class="item">
+
+<b>${esc(c.title||"Content")}</b>
+
+<p>${esc(c.description||"")}</p>
+
+<div class="muted">
+Type: ${esc(c.type||"")}
+</div>
+
+</div>
+
+`).join("")
+:
+"<p class='muted'>No content items yet.</p>"
+}
+
+</div>
+`;
+}
+
+if(page==="testsAdmin"){
+
+body=`
+
+<div class="card">
+
+<h2>Tests</h2>
+
+${
+d.tests.length
+?
+d.tests.map(t=>`
+
+<div class="item">
+
+<b>${esc(t.title||"Test")}</b>
+
+<p class="muted">
+Marks: ${esc(t.total_marks||0)}
+</p>
+
+</div>
+
+`).join("")
+:
+"<p class='muted'>No tests yet.</p>"
+}
+
+</div>
+`;
+}
+
+if(page==="results"){
+
+body=`
+
+<div class="card">
+
+<h2>Results</h2>
+
+${
+d.results.length
+?
+d.results.map(r=>`
+
+<div class="item">
+
+<b>Student: ${esc(r.student_id||r.user_id||"")}</b>
+
+<p class="muted">
+Test: ${esc(r.test_id||"")}
+</p>
+
+<p>
+Score: <b>${esc(r.score||0)}</b>
+</p>
+
+</div>
+
+`).join("")
+:
+"<p class='muted'>No results yet.</p>"
+}
+
+</div>
+`;
+}
+
+app.innerHTML=nav+body;
+}
+
 async function logout(){
 
+try{
 await sb.auth.signOut();
+}catch(e){}
 
-S=null;
+currentUser=null;
+student=null;
+studentContent=[];
+studentTests=[];
+page="home";
 
 loginPage();
-
 }
 
 function startApp(){
@@ -418,25 +942,50 @@ detectSessionInUrl:false
 }
 );
 
-sb.auth.getSession().then(({data})=>{
+sb.auth.getSession().then(async({data})=>{
 
 if(data.session){
-load();
+
+currentUser=data.session.user;
+
+const {data:profile}=await sb
+.from("profiles")
+.select("*")
+.eq("id",currentUser.id)
+.maybeSingle();
+
+if(profile && profile.role==="admin"){
+
+page="overview";
+await adminDashboard();
+
 }else{
-loginPage();
+
+await loadStudent();
+
 }
 
-}).catch(showError);
+}else{
+
+loginPage();
+
+}
+
+}).catch(loginPage);
 
 }catch(x){
 
-showError(x.message);
+app.innerHTML=
+'<div class="card">'+
+'<h2>System Error</h2>'+
+errorBox(x.message)+
+'</div>';
 
 }
-
 }
 
 window.addEventListener("load",startApp);
+
 </script>
 
 </body>
